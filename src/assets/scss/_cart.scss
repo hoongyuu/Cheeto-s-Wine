@@ -1,0 +1,198 @@
+.cart {
+  padding: 60px 0;
+  .container {
+    padding: 0 15px;
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    h2 {
+      color: #333;
+      padding-bottom: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    a {
+      background-color: #fff;
+      border-radius: 50px;
+      color: #7b7b7b;
+      display: block;
+      padding: 10px 15px;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      font-size: 14px;
+      &:hover {
+        background-color: darken(#fff, 10);
+      }
+    }
+    .fa-angle-left {
+      font-size: 18px;
+      padding-right: 5px;
+      transform: translateY(1.5px);
+    }
+  }
+  &-main {
+    &-item {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #fff;
+      box-shadow: 0 2px 5px 3px rgba(143, 142, 142, 0.4);
+      margin: 0 0 20px;
+      img {
+        background-color: #ddd;
+        height: 100px;
+        margin-right: 20px;
+      }
+    }
+    &-info {
+      display: flex;
+      padding: 20px;
+    }
+    &-txt {
+      padding-top: 5px;
+      h4 {
+        font-size: 14px;
+        font-weight: 300;
+        color: #6b6b6b;
+        margin: 0 0 10px 0;
+      }
+      h3 {
+        margin: 0 0 20px 0;
+        color: #292245;
+        line-height: 1.2;
+      }
+      span {
+        color: #919191;
+        display: block;
+        font-weight: 300;
+        font-size: 14px;
+      }
+    }
+    &-quantity {
+      display: flex;
+      width: 80%;
+      box-sizing: border-box;
+      padding: 5px 0 5px 20px;
+      button,
+      input {
+        font-weight: 300;
+      }
+      button {
+        border: 1px solid #9a9a9a;
+        width: 40px;
+        font-size: 20px;
+        color: #4b4b4b;
+        &:first-of-type {
+          border-radius: 5px 0 0 5px;
+        }
+        &:last-of-type {
+          border-radius: 0 5px 5px 0;
+        }
+      }
+      input {
+        width: 100px;
+        border: 0;
+        border-top: 1px solid #9a9a9a;
+        border-bottom: 1px solid #9a9a9a;
+        background-color: #fff;
+        color: #4b4b4b;
+        text-align: center;
+        font-size: 16px;
+      }
+    }
+    &-price {
+      display: block;
+      width: 100%;
+      color: #ff6645;
+      font-size: 20px;
+      text-align: right;
+      padding: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+    }
+    &-del {
+      width: 20%;
+      text-align: right;
+      box-sizing: border-box;
+      padding-right: 20px;
+      button {
+        align-self: center;
+        width: 50px;
+        height: 50px;
+        border: 1px solid #9b9b9b;
+        border-radius: 50%;
+        background-color: #fff;
+        color: #6b6b6b;
+        font-size: 18px;
+        transition: all 0.3s;
+        &:hover {
+          color: #fff;
+          background-color: #d44;
+        }
+      }
+    }
+    &-confirm {
+      display: flex;
+      a {
+        flex: 1;
+        text-align: center;
+        padding: 8px;
+        background-color: #ff6645;
+        border: 0;
+        border-radius: 5px;
+        color: #fff;
+      }
+    }
+  }
+}
+@media (min-width: 769px) {
+  .cart {
+    &-main {
+      &-item {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        box-shadow: none;
+        border-bottom: 1px solid #9c9c9c;
+        padding-bottom: 15px;
+        img {
+          background-color: #fff;
+        }
+      }
+      &-info {
+        padding: 0;
+      }
+      &-quantity {
+        align-self: stretch;
+        padding: 28px 0;
+        width: 20%;
+        margin-left: auto;
+      }
+      &-del {
+        order: 2;
+        width: 10%;
+        padding: 0;
+      }
+      &-price {
+        margin-top: 0;
+        width: 15%;
+        border: 0;
+        order: 1;
+      }
+      &-confirm {
+        justify-content: flex-end;
+        a {
+          flex: none;
+          padding: 8px 120px;
+          transition: all 0.3s;
+          &:hover {
+            background-color: darken(#ff6645, 10);
+          }
+        }
+      }
+    }
+  }
+}

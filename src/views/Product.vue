@@ -1,0 +1,142 @@
+<template>
+  <section class="product" v-if="data.options">
+    <div class="container">
+      <div class="product-main">
+        <div class="product-main-img">
+          <img :src="data.imageUrl" />
+        </div>
+        <div class="product-main-txt">
+          <h4>{{ data.options.winery }}</h4>
+          <h2>{{ data.title }}</h2>
+          <p>{{ data.category }} | {{ data.options.capacity }}</p>
+          <div class="product-main-box">
+            <div class="product-main-price">
+              <span class="sale-price">$ {{ data.price | currency }}</span>
+              <span class="price">$ {{ data.origin_price | currency }}</span>
+            </div>
+            <div class="product-main-quantity">
+              <button
+                type="button"
+                @click="data.quantity -= 1"
+                :disabled="data.quantity === 1"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <input
+                type="text"
+                v-model="data.quantity"
+                @keyup="checkNum(data)"
+              />
+              <button type="button" @click="data.quantity += 1">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="product-main-btn">
+            <button
+              type="button"
+              class="product-main-cart"
+              @click="addCart(data)"
+            >
+              加入購物車
+            </button>
+            <button
+              type="button"
+              class="product-main-buy"
+              @click="addCart(data, 'buy')"
+            >
+              立即購買
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-info-item">
+          <h3>酒款介紹</h3>
+          <div class="product-info-txt">
+            <div class="product-info-txt-item">
+              <span> <i class="fas fa-map-marker-alt"></i> 產地 </span>
+              <h4>{{ data.options.place }}</h4>
+            </div>
+            <div class="product-info-txt-item">
+              <span><i class="fas fa-wine-bottle"></i> 酒廠</span>
+              <h4>{{ data.options.winery }}</h4>
+            </div>
+            <div class="product-info-txt-item">
+              <span><i class="fas fa-wine-glass-alt"></i> 年份</span>
+              <h4>{{ data.options.year }}</h4>
+            </div>
+            <div class="product-info-txt-item">
+              <span><i class="fas fa-leaf"></i> 品種</span>
+              <h4>{{ data.category }}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="product-info-item">
+          <h3>酒造資訊</h3>
+          <p v-html="data.description"></p>
+        </div>
+        <div class="product-info-item">
+          <h3>酒評分享</h3>
+          <p v-html="data.content"></p>
+        </div>
+      </div>
+      <div class="product-swiper">
+        <h3 class="product-swiper-title">其他商品</h3>
+        <swiper :product-data="productData" @update="resetProduct"></swiper>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import { addCart } from "../components/JS/addCart";
+import { checkNum } from "../components/JS/checkNum";
+import { cookie } from "../components/JS/cookie";
+import swiper from "../components/Swiper.vue";
+export default {
+  data() {
+    return {
+      data: {},
+      productData: [],
+      id: ""
+    };
+  },
+  mixins: [addCart, checkNum, cookie],
+  components: { swiper },
+  created() {
+    // 利用 cookie 來取得商品 ID
+    const wineId = this.getCookie("wineId");
+    this.getProduct(wineId);
+    this.getProductsData();
+  },
+  methods: {
+    getProduct(id) {
+      // vue loading-show
+      let loader = this.$loading.show();
+      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/product/${id}`;
+
+      this.axios.get(api).then(res => {
+        loader.hide();
+        this.data = res.data.data;
+        this.$set(this.data, "quantity", 1);
+      });
+    },
+    getProductsData() {
+      // vue loading-show
+      let loader = this.$loading.show();
+      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
+
+      this.axios.get(api).then(res => {
+        this.productData = res.data.data;
+        // vue loading-hide
+        loader.hide();
+      });
+    },
+    resetProduct() {
+      const wineId = this.getCookie("wineId");
+      this.getProduct(wineId);
+    }
+  }
+};
+</script>

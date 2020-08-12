@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px 0;
+  li {
+    margin: 0 3px;
+  }
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7b7b7b;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    transition: all 0.3s;
+    &:hover {
+      background-color: darken(#fff, 13);
+      color: darken(#caad80, 10);
+    }
+    &.disabled {
+      color: lighten(#caad80, 15);
+      pointer-events: none;
+    }
+    &.active {
+      pointer-events: none;
+      background-color: #caad80;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.backend {
+  &-header {
+    padding: 20px 0;
+    text-align: center;
+    h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      color: #cdc;
+    }
+    &-list {
+      display: flex;
+      justify-content: center;
+      li {
+        padding: 3px 15px;
+        margin: 10px 0;
+      }
+      li + li {
+        border-left: 1px solid #caad80;
+      }
+      a {
+        display: block;
+        color: #fff;
+        transition: all 0.3s;
+        &:hover {
+          color: #caad80;
+        }
+      }
+    }
+  }
+}

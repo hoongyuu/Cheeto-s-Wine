@@ -1,0 +1,137 @@
+.back-coupon {
+  &-add {
+    text-align: right;
+    padding: 30px 0;
+    button {
+      border: 0;
+      border-radius: 5px;
+      background-color: #ff6645;
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 20px;
+      transition: all 0.3s;
+      &:hover {
+        background-color: darken(#ff6645, 6);
+      }
+    }
+  }
+  &-btn {
+    display: flex;
+    justify-content: center;
+    button {
+      padding: 5px 10px;
+      transition: all 0.3s;
+    }
+  }
+  &-title {
+    color: #4b4b4b;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 1px solid #7b7b7b;
+  }
+  &-edit {
+    border: 1px solid #3b3bff;
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+    color: #3b3bff;
+    &:hover {
+      background-color: #3b3bff;
+      color: #fff;
+    }
+  }
+  &-del {
+    border: 1px solid #ff1b1b;
+    border-radius: 0 4px 4px 0;
+    color: #ff1b1b;
+    &:hover {
+      background-color: #ff1b1b;
+      color: #fff;
+    }
+  }
+  table {
+    width: 100%;
+    tr {
+      text-align: left;
+    }
+    th {
+      padding: 20px 0;
+      border-top: 1px solid #9c9c9c;
+      border-bottom: 1px solid #9c9c9c;
+    }
+    td {
+      padding: 15px 0;
+    }
+  }
+  &-modal {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    min-width: 40%;
+    background-color: #fff;
+    border-radius: 8px;
+    &-wrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s;
+      &.active {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    h2 {
+      border-bottom: 1px solid #9b9b9b;
+      margin-bottom: 20px;
+      padding: 20px;
+      font-size: 30px;
+    }
+    &-item {
+      padding: 10px 20px;
+      label,
+      input {
+        display: block;
+      }
+      label {
+        margin-bottom: 10px;
+      }
+      input {
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        padding: 8px 12px;
+        font-size: 16px;
+        font-family: "Noto Sans TC", sans-serif;
+      }
+    }
+    &-check {
+      padding: 20px;
+    }
+    &-btn {
+      padding: 20px;
+      text-align: right;
+      button {
+        background-color: #3636df;
+        border: 0;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        padding: 8px 20px;
+        transition: all 0.3s;
+        &:hover {
+          background-color: darken(#3636df, 10);
+        }
+      }
+    }
+  }
+}
