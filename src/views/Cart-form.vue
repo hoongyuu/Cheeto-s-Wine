@@ -249,7 +249,7 @@ export default {
       this.axios.get(api).then(res => {
         this.cartData = res.data.data;
 
-        api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
+        api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
         this.axios
           .get(api)
           .then(res => {
