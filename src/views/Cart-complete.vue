@@ -21,7 +21,7 @@
             {{ totalMoney | currency }}
           </span>
           <span v-else>
-            {{ (totalMoney - data.amount) | currency }}
+            {{ Math.floor(totalMoney - data.amount) | currency }}
           </span>
         </div>
       </div>
@@ -65,6 +65,7 @@ export default {
     // 利用 cookie 來取得訂單 ID
     const orderId = this.getCookie("orderId");
     this.getOrder(orderId);
+    this.$bus.$emit("cartUpdate");
   },
   methods: {
     getOrder(id) {
@@ -78,7 +79,6 @@ export default {
       });
     },
     continueShopping() {
-      this.$bus.$emit("cartUpdate");
       this.$router.push("/products");
     }
   },

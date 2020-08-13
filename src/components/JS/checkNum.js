@@ -5,6 +5,9 @@ export const checkNum = {
       if (isNaN(num)) {
         item.quantity = 1;
       }
+      if (num < 0) {
+        item.quantity = 1;
+      }
     }
   }
 };
