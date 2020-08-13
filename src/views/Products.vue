@@ -157,7 +157,7 @@ export default {
     getProductData() {
       // vue loading-show
       let loader = this.$loading.show();
-      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=50`;
+      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
 
       this.axios.get(api).then(res => {
         this.data = res.data.data;
