@@ -13,7 +13,7 @@
             <div class="cart-form-split">
               <div class="item">
                 <ValidationProvider rules="required" v-slot="{ classes }">
-                  <label for="cartName">姓名</label>
+                  <label for="cartName">姓名 *</label>
                   <input
                     type="text"
                     placeholder="請輸入姓名"
@@ -49,7 +49,7 @@
                   rules="required|min8"
                   v-slot="{ errors, classes, passed }"
                 >
-                  <label for="cartPhone">聯絡手機</label>
+                  <label for="cartPhone">聯絡手機 *</label>
                   <input
                     type="tel"
                     placeholder="請輸入手機號碼"
@@ -81,7 +81,7 @@
                   rules="required|email"
                   v-slot="{ errors, passed, classes }"
                 >
-                  <label for="cartEmail">Email</label>
+                  <label for="cartEmail">Email *</label>
                   <input
                     type="email"
                     id="cartEmail"
@@ -102,7 +102,7 @@
                   rules="required"
                   v-slot="{ errors, classes, passed }"
                 >
-                  <label for="cartAddress">地址</label>
+                  <label for="cartAddress">地址 *</label>
                   <input
                     type="text"
                     id="cartAddress"
@@ -119,7 +119,7 @@
             </div>
             <div class="cart-form-whole">
               <div class="item">
-                <label for="cartPurchase">購買方式</label>
+                <label for="cartPurchase">購買方式 *</label>
                 <select id="cartPurchase" v-model="formData.payment" required>
                   <option value="" disabled>請選擇付款方式</option>
                   <option value="WebATM">WebATM</option>
@@ -160,7 +160,11 @@
             <li>
               <h3>折扣碼</h3>
               <div class="cart-info-coupon">
-                <input type="text" v-model="couponCode" />
+                <input
+                  type="text"
+                  v-model="couponCode"
+                  @keyup.enter="getCoupon"
+                />
                 <button type="button" @click="getCoupon">確認</button>
               </div>
             </li>
@@ -193,7 +197,9 @@
             :key="item.product.id"
           >
             <div class="info">
-              <img :src="item.product.imageUrl" />
+              <div class="img">
+                <img :src="item.product.imageUrl" />
+              </div>
               <div class="txt">
                 <h5>{{ item.productData.options.winery }}</h5>
                 <h4>{{ item.productData.title }}</h4>
@@ -294,6 +300,7 @@ export default {
           });
         })
         .catch(() => {
+          loader.hide();
           this.$swal.fire({
             position: "top-end",
             icon: "error",

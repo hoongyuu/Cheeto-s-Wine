@@ -1,7 +1,7 @@
 <template>
   <swiper ref="mySwiper" :options="swiperOptions">
     <swiper-slide v-for="item in productData" :key="item.id">
-      <div class="swiper-wrap">
+      <div class="swiper-wrap" @click="setCookie(item)">
         <div class="swiper-img">
           <img :src="item.imageUrl" />
         </div>
@@ -11,10 +11,10 @@
             <h3>{{ item.title }}</h3>
           </a>
           <div class="swiper-info">
-            <span
-              >{{ item.options.year }} | {{ item.options.capacity }} |
-              {{ item.category }}</span
-            >
+            <span>
+              {{ item.options.year }} | {{ item.options.capacity }} |
+              {{ item.category }}
+            </span>
           </div>
           <div class="swiper-price">
             <span class="sale-price">$ {{ item.price | currency }}</span>
@@ -67,6 +67,7 @@ export default {
       text-align: left;
       padding: 10px;
       box-sizing: border-box;
+      cursor: pointer;
       &:hover {
         box-shadow: 1px 2px 10px 3px rgba(202, 202, 202, 0.6);
       }

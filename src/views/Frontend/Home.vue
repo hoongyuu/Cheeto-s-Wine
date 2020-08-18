@@ -15,19 +15,20 @@ import indexFooter from "@/components/Footer.vue";
 // jQuery
 import $ from "jquery";
 
-$(window).scroll(function() {
-  if ($(this).scrollTop() > 400) {
-    $("#goTop").addClass("active");
-  } else {
-    $("#goTop").removeClass("active");
-  }
-});
-
 export default {
   name: "Home",
   components: {
     navbar,
     indexFooter
+  },
+  mounted() {
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 400) {
+        $("#goTop").addClass("active");
+      } else {
+        $("#goTop").removeClass("active");
+      }
+    });
   },
   methods: {
     scrollTop() {

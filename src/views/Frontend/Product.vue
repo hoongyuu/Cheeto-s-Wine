@@ -6,9 +6,16 @@
           <img :src="data.imageUrl" />
         </div>
         <div class="product-main-txt">
+          <div class="product-main-favorite" @click.stop="addStared(data)">
+            <i v-if="data.stared == true" class="fas fa-bookmark"></i>
+            <i v-else class="far fa-bookmark"></i>
+          </div>
           <h4>{{ data.options.winery }}</h4>
           <h2>{{ data.title }}</h2>
-          <p>{{ data.category }} | {{ data.options.capacity }}</p>
+          <p>
+            {{ data.options.year }} | {{ data.category }} |
+            {{ data.options.capacity }}
+          </p>
           <div class="product-main-box">
             <div class="product-main-price">
               <span class="sale-price">$ {{ data.price | currency }}</span>
@@ -18,7 +25,7 @@
               <button
                 type="button"
                 @click="data.quantity -= 1"
-                :disabled="data.quantity === 1"
+                :disabled="data.quantity <= 1"
               >
                 <i class="fas fa-minus"></i>
               </button>
@@ -82,7 +89,7 @@
         </div>
       </div>
       <div class="product-swiper">
-        <h3 class="product-swiper-title">其他商品</h3>
+        <h3 class="product-swiper-title">你可能還會喜歡</h3>
         <swiper :product-data="productData" @update="resetProduct"></swiper>
       </div>
     </div>
@@ -90,10 +97,11 @@
 </template>
 
 <script>
-import { addCart } from "../components/JS/addCart";
-import { checkNum } from "../components/JS/checkNum";
-import { cookie } from "../components/JS/cookie";
-import swiper from "../components/Swiper.vue";
+import { addCart } from "@/assets/JS/addCart";
+import { checkNum } from "@/assets/JS/checkNum";
+import { cookie } from "@/assets/JS/cookie";
+import { stare } from "@/assets/JS/stare";
+import swiper from "@/components/Swiper.vue";
 export default {
   data() {
     return {
@@ -102,35 +110,48 @@ export default {
       id: ""
     };
   },
-  mixins: [addCart, checkNum, cookie],
+  mixins: [addCart, checkNum, cookie, stare],
   components: { swiper },
   created() {
     // 利用 cookie 來取得商品 ID
     const wineId = this.getCookie("wineId");
     this.getProduct(wineId);
-    this.getProductsData();
   },
   methods: {
     getProduct(id) {
       // vue loading-show
       let loader = this.$loading.show();
-      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/product/${id}`;
+      let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/product/${id}`;
 
       this.axios.get(api).then(res => {
-        loader.hide();
         this.data = res.data.data;
+        this.$set(this.data, "stared", false);
         this.$set(this.data, "quantity", 1);
-      });
-    },
-    getProductsData() {
-      // vue loading-show
-      let loader = this.$loading.show();
-      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products`;
-
-      this.axios.get(api).then(res => {
-        this.productData = res.data.data;
-        // vue loading-hide
-        loader.hide();
+        this.stareData = JSON.parse(localStorage.getItem("favoriteWine")) || [];
+        // 檢查有無加入收藏
+        this.stareData.forEach(item => {
+          if (item.title === this.data.title) {
+            this.$set(this.data, "stared", true);
+          }
+        });
+        // 取得 swiper 類似商品資料
+        api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
+        this.axios.get(api).then(res => {
+          const tempData = res.data.data;
+          const tempArray = [];
+          tempData.forEach(item => {
+            if (this.data.category === item.category) {
+              // 不加入重複商品
+              if (this.data.title === item.title) {
+                return;
+              }
+              tempArray.push(item);
+            }
+          });
+          this.productData = tempArray;
+          // vue loading-hide
+          loader.hide();
+        });
       });
     },
     resetProduct() {

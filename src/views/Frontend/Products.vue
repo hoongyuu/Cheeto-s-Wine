@@ -1,9 +1,12 @@
 <template>
   <section class="products">
     <div class="products-hero">
-      <img src="../assets/images/products-hero.png" class="products-hero-img" />
       <img
-        src="../assets/images/products-hero-mobile.png"
+        src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproducts-hero.png?alt=media&token=ad237ae1-a02c-40fd-8732-e41ed6d1ffbc"
+        class="products-hero-img"
+      />
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproducts-hero-mobile.png?alt=media&token=c1af88eb-e381-4001-b1db-be254ffd20b2"
         class="products-hero-img--mobile"
       />
       <div class="products-hero-txt">
@@ -93,7 +96,12 @@
           class="products-main-item"
           v-for="item in filterProduct"
           :key="item.id"
+          @click="goDetail(item)"
         >
+          <div class="products-main-favorite" @click.stop="addStared(item)">
+            <i v-if="item.stared == true" class="fas fa-bookmark"></i>
+            <i v-else class="far fa-bookmark"></i>
+          </div>
           <img :src="item.imageUrl" />
           <div class="products-main-txt">
             <h2>
@@ -109,10 +117,11 @@
                 type="text"
                 v-model="item.quantity"
                 @keyup="checkNum(item)"
+                @click.stop=""
               />
             </div>
             <div class="products-main-btn">
-              <a href="#" class="btn-init" @click.prevent="addCart(item)">
+              <a href="#" class="btn-init" @click.prevent.stop="addCart(item)">
                 <spanner v-if="spannerStatus === item.id"></spanner>
                 加入購物車
               </a>
@@ -125,15 +134,15 @@
 </template>
 
 <script>
-import spanner from "../components/Span";
-import { addCart } from "../components/JS/addCart";
-import { checkNum } from "../components/JS/checkNum";
-import { cookie } from "../components/JS/cookie";
+import spanner from "@/components/Span";
+import { addCart } from "@/assets/JS/addCart";
+import { checkNum } from "@/assets/JS/checkNum";
+import { stare } from "@/assets/JS/stare";
+import { cookie } from "@/assets/JS/cookie";
 export default {
   data() {
     return {
       data: [],
-      filterData: [],
       wineStyle: "",
       sortData: "",
       mobile: {
@@ -144,7 +153,7 @@ export default {
       spannerStatus: ""
     };
   },
-  mixins: [addCart, checkNum, cookie],
+  mixins: [addCart, checkNum, cookie, stare],
   components: { spanner },
   created() {
     // 取得 Cookie
@@ -165,6 +174,14 @@ export default {
         loader.hide();
         this.data.forEach(item => {
           this.$set(item, "quantity", 1);
+          this.$set(item, "stared", false);
+          this.stareData =
+            JSON.parse(localStorage.getItem("favoriteWine")) || [];
+          this.stareData.forEach(stareItem => {
+            if (item.title === stareItem.title) {
+              this.$set(item, "stared", true);
+            }
+          });
         });
       });
     },

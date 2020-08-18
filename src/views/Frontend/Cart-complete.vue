@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { cookie } from "../components/JS/cookie";
+import { cookie } from "@/assets/JS/cookie";
 export default {
   data() {
     return {

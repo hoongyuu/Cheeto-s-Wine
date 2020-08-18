@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 99;
-  background: url(../images/headerBg.jpg);
+  background: url(https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2FheaderBg.jpg?alt=media&token=cba435a0-3476-46e7-9ab1-31f07fb574c1);
   &-mobile {
     display: flex;
     justify-content: space-between;
@@ -85,7 +85,7 @@
         transition: all 1s;
         background-color: #f0efed;
         &.active {
-          height: 223px;
+          height: 267px;
           border-bottom: 3px solid #caad80;
         }
       }
@@ -110,6 +110,9 @@
     &-navbar {
       display: block;
       h2 {
+        display: none;
+      }
+      &-mobile {
         display: none;
       }
       &-list {
@@ -147,6 +150,11 @@
         padding: 0 15px;
       }
       &-social,
+      &-logo,
+      &-btn {
+        width: 33.33333%;
+      }
+      &-social,
       &-btn {
         display: flex;
         align-items: center;
@@ -169,23 +177,28 @@
           font-size: 40px;
           font-weight: 700;
           color: #caad80;
-          margin-left: 30px;
           padding: 15px 0;
+          text-align: center;
           transition: all 0.3s;
         }
       }
-      &-login,
-      &-cart {
-        color: #caad80;
-        font-weight: 300;
-        font-size: 12px;
-        transition: color 0.3s;
-        &:hover {
-          color: #fff;
+      &-btn {
+        justify-content: flex-end;
+        a {
+          color: #caad80;
+          font-weight: 300;
+          font-size: 12px;
+          transition: color 0.3s;
+          &:hover {
+            color: #fff;
+          }
         }
       }
       &-login {
-        margin-right: 10px;
+        margin-right: 20px;
+      }
+      &-favorite {
+        margin-right: 15px;
       }
       &.scroll {
         h1 {

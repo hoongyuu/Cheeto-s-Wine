@@ -1,0 +1,175 @@
+.favorite {
+  padding: 30px 0;
+  .container {
+    padding: 0 15px;
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ff6645;
+    padding-bottom: 15px;
+    h2 {
+      color: #ff6645;
+      font-size: 18px;
+    }
+    span {
+      align-self: flex-end;
+      font-size: 14px;
+      color: #4b4b4b;
+    }
+  }
+  &-main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 0;
+    &-item {
+      position: relative;
+      box-sizing: border-box;
+      width: 48.5%;
+      margin-bottom: 25px;
+      &:nth-child(odd) {
+        margin-right: 3%;
+      }
+      img {
+        background-color: #fff;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      h5 {
+        font-size: 14px;
+        color: #515151;
+        margin-bottom: 5px;
+      }
+      h3 {
+        color: #292245;
+        line-height: 1.4;
+        height: 50px;
+        transition: all 0.3s;
+        margin-bottom: 10px;
+        &:hover {
+          color: #caad80;
+        }
+      }
+    }
+    &-favorite {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: #caad80;
+    }
+    &-info {
+      margin-bottom: 15px;
+      span {
+        color: #7b7b7b;
+        font-weight: 300;
+        font-size: 14px;
+      }
+    }
+    &-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    &-price {
+      width: 40%;
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .sale-price {
+        color: #ff6645;
+        font-size: 18px;
+        margin-right: 10px;
+      }
+      .price {
+        color: #909090;
+        font-size: 14px;
+        text-decoration: line-through;
+      }
+    }
+    &-quantity {
+      width: 60%;
+      display: flex;
+      justify-content: flex-end;
+      button,
+      input {
+        font-weight: 300;
+      }
+      button {
+        padding: 5px 10px;
+        border: 1px solid #9a9a9a;
+        color: #7b7b7b;
+        &:first-of-type {
+          border-radius: 5px 0 0 5px;
+        }
+        &:last-of-type {
+          border-radius: 0 5px 5px 0;
+        }
+      }
+      input {
+        width: 30%;
+        border: 0;
+        border-top: 1px solid #9a9a9a;
+        border-bottom: 1px solid #9a9a9a;
+        background-color: #fff;
+        color: #4b4b4b;
+        text-align: center;
+        font-size: 16px;
+      }
+    }
+    &-btn {
+      a {
+        display: block;
+        background-color: #ff6645;
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+}
+@media (min-width: 576px) {
+  .favorite {
+    &-main {
+      &-item {
+        padding: 10px;
+        width: 32%;
+        margin-left: 2%;
+        transition: all 0.3s;
+        &:nth-child(odd) {
+          margin-right: 0;
+        }
+        &:first-child,
+        &:nth-child(4n) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 769px) {
+  .favorite {
+    &-main {
+      &-item {
+        cursor: pointer;
+        padding: 10px;
+        width: 24.25%;
+        margin-left: 1%;
+        transition: all 0.3s;
+        &:nth-child(4n) {
+          margin-left: 1%;
+        }
+        &:first-child,
+        &:nth-child(5n) {
+          margin-left: 0;
+        }
+        &:hover {
+          box-shadow: 1px 2px 10px 3px rgba(202, 202, 202, 0.6);
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,10 @@
   <div class="index-wrap">
     <!-- hero start -->
     <section class="index-hero">
-      <img src="../assets/images/indexHero.jpeg" class="index-hero-img" />
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2FindexHero.jpeg?alt=media&token=33405c05-d0ba-46a8-8f29-8a26e8f5510d"
+        class="index-hero-img"
+      />
       <div class="container">
         <div class="index-hero-txt">
           <h2>Cheeto's Wine</h2>
@@ -22,7 +25,9 @@
     <section class="index-wine">
       <div class="container">
         <div class="index-wine-item">
-          <img src="../assets/images/wine1.png" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fwine1.png?alt=media&token=1caf5f99-6b5f-40fd-888b-b0004c1a4df4"
+          />
           <div class="index-wine-txt">
             <h4>Boizel</h4>
             <h3>
@@ -48,7 +53,9 @@
           </div>
         </div>
         <div class="index-wine-item">
-          <img src="../assets/images/wine2.png" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fwine2.png?alt=media&token=67aa6afd-a74d-46c9-98d9-13827646390f"
+          />
           <div class="index-wine-txt">
             <h4>Boizel</h4>
             <h3>
@@ -74,7 +81,9 @@
           </div>
         </div>
         <div class="index-wine-item">
-          <img src="../assets/images/wine3.png" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fwine3.png?alt=media&token=a1a9c657-f829-4ef8-9a48-1bd2c240ea96"
+          />
           <div class="index-wine-txt">
             <h4>Boizel</h4>
             <h3>
@@ -100,7 +109,9 @@
           </div>
         </div>
         <div class="index-wine-item index-wine-mobile">
-          <img src="../assets/images/wine4.png" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fwine4.png?alt=media&token=7a3e8528-c4af-4803-a3db-5b1ed9fe9ee0"
+          />
           <div class="index-wine-txt">
             <h4>Boizel</h4>
             <h3>
@@ -126,7 +137,9 @@
           </div>
         </div>
         <div class="index-wine-item index-wine-mobile">
-          <img src="../assets/images/wine5.png" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fwine5.png?alt=media&token=4274621e-348b-423b-90fb-59c4c310bbf2"
+          />
           <div class="index-wine-txt">
             <h4>Boizel</h4>
             <h3>
@@ -152,13 +165,15 @@
           </div>
         </div>
       </div>
-      <a href="#" class="btn-init">查看所有酒類</a>
+      <router-link to="/products" class="btn-init">查看所有酒類</router-link>
     </section>
 
     <!-- event start -->
     <section class="index-event">
       <div class="index-event-item">
-        <img src="../assets/images/index-sparkwine.png" />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Findex-sparkwine.png?alt=media&token=da6d561c-8ea2-48b4-a0b9-b7d4b66bb2ba"
+        />
         <div class="index-event-txt">
           <h2>氣泡酒 Sparkling Wine</h2>
           <h4>
@@ -175,7 +190,9 @@
         </div>
       </div>
       <div class="index-event-item">
-        <img src="../assets/images/index-redwine.png" />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Findex-redwine.png?alt=media&token=bb99da7e-3413-4ebe-b1de-a01fcefa3f12"
+        />
         <div class="index-event-txt">
           <h2>葡萄酒 Grape Wine</h2>
           <h4>
@@ -188,7 +205,9 @@
         </div>
       </div>
       <div class="index-event-item">
-        <img src="../assets/images/index-whiskey.png" />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Findex-whiskey.png?alt=media&token=d3865353-3617-4778-9b0c-7440e093a6e7"
+        />
         <div class="index-event-txt">
           <h2>威士忌 Whiskey</h2>
           <h4>
@@ -201,7 +220,9 @@
         </div>
       </div>
       <div class="index-event-item">
-        <img src="../assets/images/index-other.png" />
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Findex-other.png?alt=media&token=4b9d1418-6765-40c2-9e2d-5829c2f20de0"
+        />
         <div class="index-event-txt">
           <h2>其他酒類 Other Wine</h2>
           <h4>

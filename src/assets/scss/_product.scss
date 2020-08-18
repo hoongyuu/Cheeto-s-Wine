@@ -1,5 +1,5 @@
 .product {
-  background: url(../images/product-hero.jpg);
+  background: url(https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproduct-hero.jpg?alt=media&token=52ca07c7-b2f6-44fe-ba49-cd982a588a15);
   background-repeat: no-repeat;
   padding-bottom: 60px;
   &-main {
@@ -15,6 +15,7 @@
       }
     }
     &-txt {
+      position: relative;
       padding: 0px 15px;
       h4 {
         color: #4b4b4b;
@@ -31,6 +32,14 @@
         margin-bottom: 20px;
         font-weight: 300;
       }
+    }
+    &-favorite {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: #caad80;
+      cursor: pointer;
     }
     &-box {
       display: flex;

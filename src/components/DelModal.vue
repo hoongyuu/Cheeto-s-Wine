@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  props: ["item", "isDel", "token"],
+  props: ["item", "isDel", "token", "isCoupon"],
   methods: {
     delCart() {
       // vue loading-show
@@ -37,8 +37,8 @@ export default {
       if (this.isDel === true) {
         // 刪除後臺產品資料
         api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/product/${this.item.id}`;
-        // token 驗證
-        this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
+      } else if (this.isCoupon === true) {
+        api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.item.id}`;
       } else {
         // 刪除購物車資料
         api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping/${this.item.id}`;

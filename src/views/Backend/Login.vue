@@ -70,7 +70,7 @@ export default {
           // vue loading-hide
           loader.hide();
           // 頁面轉換
-          this.$router.push("/admin/backProducts");
+          this.$router.push("/admin");
         })
         .catch(() => {
           // alert show

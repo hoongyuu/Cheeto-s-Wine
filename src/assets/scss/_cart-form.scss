@@ -163,10 +163,16 @@
         display: flex;
         margin-bottom: 20px;
       }
-      img {
+      .img {
         width: 30%;
+        img {
+          width: 100%;
+        }
       }
       .txt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         color: #333;
         h5,
         h4 {

@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import { checkNum } from "../components/JS/checkNum";
-import delModel from "../components/DelModal";
+import { checkNum } from "@/assets/JS/checkNum";
+import delModel from "@/components/DelModal";
 export default {
   data() {
     return {

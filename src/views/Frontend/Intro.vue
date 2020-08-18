@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <section class="about-hero">
-      <img src="../assets/images/aboutHero.png" />
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2FaboutHero.png?alt=media&token=cece2465-ca2c-49e0-bbd9-1b6818772793"
+      />
       <div class="about-hero-txt">
         <h2>
           職人堅持
@@ -14,7 +16,7 @@
       <div class="container">
         <div class="about-intro-img">
           <img
-            src="https://static.wixstatic.com/media/a727eb_d1b3566774134652ababd90f052cd59d~mv2.jpg/v1/fill/w_740,h_590,al_c,q_90,usm_0.66_1.00_0.01/a727eb_d1b3566774134652ababd90f052cd59d~mv2.webp"
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fintro-img2.jpg?alt=media&token=2f42ba04-9c57-4cad-bfe5-3f236e6f523a"
           />
         </div>
         <div class="about-intro-txt">
@@ -32,7 +34,7 @@
       <div class="container">
         <div class="about-intro-img">
           <img
-            src="https://static.wixstatic.com/media/a727eb_63f7725dbf724b82b96c780ebdcfeb8d~mv2.jpg/v1/fill/w_925,h_520,al_c,lg_1,q_90/a727eb_63f7725dbf724b82b96c780ebdcfeb8d~mv2.webp"
+            src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fintro-img1.jpg?alt=media&token=03c21428-c1ef-456d-88f9-d23078228050"
           />
         </div>
         <div class="about-intro-txt">
@@ -126,234 +128,4 @@
 export default {};
 </script>
 
-<style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
-.about {
-  &-title {
-    font-size: 36px;
-    color: #3b3b3b;
-    font-weight: bold;
-    padding: 40px 0;
-    text-align: center;
-  }
-  &-hero {
-    position: relative;
-    img {
-      width: 100%;
-    }
-    &-txt {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    h2 {
-      text-align: center;
-      color: #ddd;
-      font-size: 20px;
-      letter-spacing: 1.5px;
-      line-height: 1.4;
-    }
-    span {
-      display: block;
-    }
-  }
-  &-intro {
-    padding: 30px 15px;
-    &-img {
-      margin-bottom: 20px;
-      img {
-        width: 100%;
-      }
-    }
-    &-txt {
-      h2 {
-        color: #ff6645;
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-      p {
-        color: #6b6b6b;
-        line-height: 1.4;
-        span {
-          display: block;
-        }
-      }
-    }
-  }
-  &-reverse {
-    background-color: #fff;
-  }
-  &-history {
-    padding: 30px 0;
-    li {
-      box-sizing: border-box;
-    }
-    .item {
-      background-color: #f0efed;
-      padding: 20px;
-      border: 1px solid #7b7b7b;
-      border-radius: 8px;
-      box-shadow: 3px 3px 6px #ccc;
-      color: #4b4b4b;
-      margin-bottom: 15px;
-      h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 36px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-      p {
-        line-height: 1.4em;
-      }
-      span {
-        display: block;
-        margin-top: 5px;
-      }
-    }
-  }
-}
-@media (min-width: 769px) {
-  .about {
-    &-hero {
-      &-txt {
-        h2 {
-          position: absolute;
-          top: 25%;
-          left: 5%;
-          font-size: 36px;
-          text-align-last: left;
-        }
-        span {
-          margin: 0 0 0 40px;
-        }
-      }
-    }
-    &-intro {
-      padding: 60px 0;
-      .container {
-        display: flex;
-      }
-      &-img,
-      &-txt {
-        width: 50%;
-        box-sizing: border-box;
-      }
-      &-txt {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 20px;
-      }
-    }
-    &-reverse {
-      background-color: #fff;
-      .about-intro-img {
-        order: 2;
-      }
-      .about-intro-txt {
-        order: 1;
-      }
-    }
-    &-history {
-      position: relative;
-      padding: 60px 0;
-      .container {
-        max-width: 960px;
-      }
-      ul {
-        padding: 0 0 120px;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-      }
-      li {
-        position: relative;
-        width: 50%;
-        padding: 20px 0;
-      }
-      .item {
-        box-shadow: 3px 3px 6px #ccc;
-        margin-bottom: 0;
-        transition: all 0.3s;
-        h2,
-        p {
-          transition: all 0.3s;
-        }
-        &:hover {
-          box-shadow: 8px 8px 8px #aaa;
-          h2 {
-            color: #ff6645;
-          }
-        }
-      }
-      li:nth-child(odd) {
-        padding-right: 60px;
-      }
-      li:nth-child(even) {
-        padding-left: 60px;
-        transform: translateY(50%);
-      }
-      li::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 2px;
-        height: 100%;
-        background-color: #7b7b7b;
-      }
-      li:nth-child(odd)::before {
-        right: 0;
-        transform: translateX(50%);
-      }
-      li:nth-child(even)::before {
-        left: 0;
-        transform: translateX(-50%);
-      }
-      li:last-child::before {
-        height: 0%;
-      }
-      li::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 10px;
-        height: 10px;
-        background-color: #f0efed;
-        border: 1px solid #7b7b7b;
-        border-radius: 50%;
-        z-index: 10;
-      }
-      li:nth-child(odd)::after {
-        right: 0;
-        transform: translate(50%, -50%);
-      }
-      li:nth-child(even)::after {
-        left: 0;
-        transform: translate(-50%, -50%);
-      }
-      .item::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 1px;
-        background-color: #7b7b7b;
-        z-index: -1;
-      }
-      .item:nth-child(odd)::before {
-        left: 0;
-      }
-      .item:nth-child(even)::before {
-        right: 0;
-      }
-    }
-  }
-}
-</style>
+<style lang="scss"></style>

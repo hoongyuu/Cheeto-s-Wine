@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+.coupon-front {
+  padding: 60px 0;
+  &-header {
+    text-align: center;
+    h2 {
+      font-family: "Luckiest Guy", cursive;
+      color: #ff6645;
+      font-size: 45px;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+    p {
+      font-weight: bold;
+      font-size: 18px;
+      color: #7b7b7b;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+  }
+  &-game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 326px;
+    height: 326px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: #caad80;
+    background-size: 326px 326px;
+    position: relative;
+    .bg-main {
+      position: absolute;
+      left: 4.5px;
+      top: 4px;
+      width: 317px;
+      height: 317px;
+      background: #ddd;
+      background-size: 317px 317px;
+    }
+    .bg-sec {
+      position: absolute;
+      left: 4.5px;
+      top: 4px;
+      width: 317px;
+      height: 317px;
+      background: #eee;
+      background-size: 317px 317px;
+    }
+    .start {
+      position: relative;
+      display: flex;
+      top: 2px;
+      left: 2px;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 5px solid rgb(255, 62, 87);
+      background-size: 86px 86px;
+      color: rgb(255, 62, 87);
+      cursor: pointer;
+      letter-spacing: 3px;
+      transition: all 0.3s;
+      &:hover {
+        color: #fff;
+        background-color: rgb(255, 62, 87);
+      }
+      p {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+    ul {
+      li {
+        position: absolute;
+        width: 86px;
+        height: 86px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(255, 255, 255);
+        border: 2px solid rgba(227, 161, 0, 1);
+        border-radius: 8px;
+        p {
+          text-align: center;
+          font-size: 18px;
+          font-weight: bold;
+          color: #7b7b7b;
+        }
+      }
+      li:nth-child(1) {
+        left: 25px;
+        top: 25px;
+      }
+      li:nth-child(2) {
+        left: 120px;
+        top: 25px;
+      }
+      li:nth-child(3) {
+        left: 215px;
+        top: 25px;
+      }
+      li:nth-child(4) {
+        left: 215px;
+        top: 120px;
+      }
+      li:nth-child(5) {
+        left: 215px;
+        top: 215px;
+      }
+      li:nth-child(6) {
+        left: 120px;
+        top: 215px;
+      }
+      li:nth-child(7) {
+        left: 25px;
+        top: 215px;
+      }
+      li:nth-child(8) {
+        left: 25px;
+        top: 120px;
+      }
+      .active {
+        background: #fff2b1;
+      }
+    }
+  }
+}

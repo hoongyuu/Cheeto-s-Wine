@@ -5,6 +5,10 @@
   </div>
 </template>
 
+<script>
+export default {};
+</script>
+
 <style>
 .spinner {
   width: 20px;

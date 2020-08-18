@@ -71,11 +71,10 @@
 </template>
 
 <script>
-import modal from "../../components/ProductModal";
-import delModel from "../../components/DelModal";
-import currency from "../../components/JS/currency";
-import pagination from "../../components/Pagination";
-import { cookie } from "../../components/JS/cookie";
+import modal from "@/components/ProductModal";
+import delModel from "@/components/DelModal";
+import pagination from "@/components/Pagination";
+import { cookie } from "@/assets/JS/cookie";
 export default {
   data() {
     return {
@@ -93,7 +92,6 @@ export default {
       isDel: true
     };
   },
-  filters: { currency },
   mixins: [cookie],
   components: { modal, delModel, pagination },
   created() {
@@ -107,9 +105,6 @@ export default {
       // vue loading-show
       let loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/products?page=${page}`;
-
-      // 後端驗證
-      this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
 
       this.axios.get(api).then(res => {
         this.data = res.data.data;
@@ -141,19 +136,14 @@ export default {
       }
     },
     checkToken() {
-      // vue loading-show
-      let loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}auth/check`;
       const apiToken = {
         api_token: this.token
       };
       this.axios
         .post(api, apiToken)
-        .then(() => {
-          loader.hide();
-        })
+        .then(() => {})
         .catch(() => {
-          loader.hide();
           this.$router.push("/login");
         });
     }

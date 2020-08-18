@@ -32,7 +32,11 @@
               >
                 編輯
               </button>
-              <button type="button" class="back-coupon-del">
+              <button
+                type="button"
+                class="back-coupon-del"
+                @click="showCouponModal('del', item)"
+              >
                 刪除
               </button>
             </div>
@@ -102,12 +106,21 @@
           </div>
         </div>
       </div>
+      <delModel
+        :is-coupon="isCoupon"
+        :item="tempCoupon"
+        :class="{ active: showDelModal }"
+        :token="token"
+        @close="showDelModal = false"
+        @update="getCoupon()"
+      ></delModel>
     </div>
   </div>
 </template>
 
 <script>
-import { cookie } from "../../components/JS/cookie";
+import { cookie } from "@/assets/JS/cookie";
+import delModel from "@/components/DelModal";
 import $ from "jquery";
 
 export default {
@@ -124,9 +137,12 @@ export default {
       },
       dueDate: "",
       dueTime: "",
-      status: ""
+      status: "",
+      showDelModal: false,
+      isCoupon: true
     };
   },
+  components: { delModel },
   mixins: [cookie],
   created() {
     this.token = this.getCookie("hexToken");
@@ -137,9 +153,6 @@ export default {
       // vue loading-show
       let loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/coupons`;
-
-      // 後端驗證
-      this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
 
       this.axios
         .get(api)
@@ -157,7 +170,8 @@ export default {
         this.tempCoupon = { ...item };
         const dedlineAt = this.tempCoupon.deadline.datetime.split(" ");
         [this.dueDate, this.dueTime] = dedlineAt;
-      } else {
+        $(".back-coupon-modal-wrap").addClass("active");
+      } else if (type === "new") {
         this.status = "new";
         this.tempCoupon = {
           title: "",
@@ -168,8 +182,13 @@ export default {
         };
         this.dueDate = "";
         this.dueTime = "";
+        $(".back-coupon-modal-wrap").addClass("active");
+      } else {
+        this.tempCoupon = { ...item };
+        const dedlineAt = this.tempCoupon.deadline.datetime.split(" ");
+        [this.dueDate, this.dueTime] = dedlineAt;
+        this.showDelModal = true;
       }
-      $(".back-coupon-modal-wrap").addClass("active");
     },
     updateCoupon() {
       // vue loading-show
@@ -190,9 +209,6 @@ export default {
       }
       // 把到期日的日期及時間合併，已符合後端所需格式
       this.tempCoupon.deadline_at = `${this.dueDate} ${this.dueTime}`;
-
-      // 後端驗證
-      this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
 
       this.axios[updateType](api, this.tempCoupon).then(() => {
         this.closeModal();

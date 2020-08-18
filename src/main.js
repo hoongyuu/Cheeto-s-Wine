@@ -22,7 +22,7 @@ import {
 import { required, email } from "vee-validate/dist/rules";
 import TW from "vee-validate/dist/locale/zh_TW.json";
 // 自定義元件
-import currency from "./components/JS/currency.js";
+import currency from "./filter/currency.js";
 // vue-router & app
 import App from "./App.vue";
 import router from "./router";

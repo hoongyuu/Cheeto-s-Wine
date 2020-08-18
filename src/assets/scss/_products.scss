@@ -57,6 +57,7 @@
       flex-wrap: wrap;
     }
     &-item {
+      position: relative;
       flex-direction: column;
       text-align: center;
       width: 100%;
@@ -79,6 +80,13 @@
           }
         }
       }
+    }
+    &-favorite {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: #caad80;
     }
     &-txt {
       padding: 0 50px;
@@ -251,6 +259,7 @@
         li {
           &:hover ul {
             opacity: 1;
+            visibility: visible;
           }
         }
         ul {
@@ -262,6 +271,7 @@
           border-top: 3px solid #caad80;
           border-bottom: 3px solid #caad80;
           opacity: 0;
+          visibility: hidden;
           transition: opacity 0.3s;
           a {
             background-color: #fff;
@@ -281,6 +291,11 @@
         width: calc(33.33333% - 2px);
         border-right: 1px solid #c9c9c9;
         border-bottom: 1px solid #c9c9c9;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          background-color: darken(#fff, 10);
+        }
         &:first-of-type,
         &:nth-of-type(2),
         &:nth-of-type(3) {

@@ -58,10 +58,13 @@
   &-btn {
     text-align: right;
     a {
-      color: #7b7b7b;
+      background-color: #ff6645;
+      border-radius: 5px;
+      color: #fff;
+      padding: 5px 20px;
       transition: all 0.3s;
       &:hover {
-        color: #caad80;
+        background-color: darken(#ff6645, 10);
       }
     }
   }

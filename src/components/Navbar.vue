@@ -54,6 +54,15 @@
               優惠活動
             </router-link>
           </li>
+          <li class="header-navbar-mobile">
+            <router-link
+              class="header-navbar-link"
+              to="/favorite"
+              :class="{ active: $route.name === 'Favorite' }"
+            >
+              我的收藏
+            </router-link>
+          </li>
           <li>
             <a href="https://github.com/hoongyuu" class="header-navbar-link">
               關於作者
@@ -88,12 +97,15 @@
         </div>
         <div class="header-main-btn">
           <router-link to="/login" class="header-main-login">登入</router-link>
+          <router-link to="/favorite" class="header-main-favorite">
+            <i class="far fa-bookmark"></i> 收藏
+          </router-link>
           <router-link
             to="/cart"
             class="header-main-cart"
             v-if="cartData.length === 0"
           >
-            <i class="fas fa-shopping-cart"></i> 購物車
+            <i class="fas fa-shopping-cart"></i> 購物車 ( 目前沒有商品唷！ )
           </router-link>
           <router-link to="/cart" class="header-main-cart" v-else>
             <i class="fas fa-shopping-cart"></i> 購物車( {{ cartData.length }} )
@@ -108,19 +120,6 @@
 // jQuery
 import $ from "jquery";
 
-$(document).ready(() => {
-  $(window).scroll(() => {
-    const scrollTop = $(".header").offset().top;
-    if (scrollTop > 150) {
-      $(".header-navbar-list").addClass("scroll");
-      $(".header-main").addClass("scroll");
-    } else {
-      $(".header-navbar-list").removeClass("scroll");
-      $(".header-main").removeClass("scroll");
-    }
-  });
-});
-
 export default {
   name: "Navbar",
   data() {
@@ -132,6 +131,20 @@ export default {
   created() {
     this.$bus.$on("cartUpdate", this.getCartData);
     this.getCartData();
+  },
+  mounted() {
+    $(document).ready(() => {
+      $(window).scroll(() => {
+        const scrollTop = $(".header").offset().top;
+        if (scrollTop > 150) {
+          $(".header-navbar-list").addClass("scroll");
+          $(".header-main").addClass("scroll");
+        } else {
+          $(".header-navbar-list").removeClass("scroll");
+          $(".header-main").removeClass("scroll");
+        }
+      });
+    });
   },
   methods: {
     getCartData() {
