@@ -1,7 +1,7 @@
 .footer {
   background: url(https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2FheaderBg.jpg?alt=media&token=cba435a0-3476-46e7-9ab1-31f07fb574c1);
   padding: 40px 0;
-  color: #caad80;
+  color: $primary;
   text-align: center;
   &-title {
     font-family: "Dancing Script", cursive;
@@ -22,11 +22,10 @@
       height: 35px;
       font-size: 18px;
       color: #fff;
-      background-color: #caad80;
+      background-color: $primary;
       border-radius: 50%;
-      transition: all 0.3s;
       &:hover {
-        background-color: darken(#caad80, 10);
+        background-color: darken($primary, 10);
       }
       .icon {
         transform: translateY(50%);
@@ -62,7 +61,7 @@
     }
     &-slogan {
       display: block;
-      color: #e0e0e0;
+      color: #eee;
       font-size: 34px;
       line-height: 1.2;
       margin-bottom: 40px;

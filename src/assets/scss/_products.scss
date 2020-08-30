@@ -74,9 +74,8 @@
         margin-bottom: 20px;
         a {
           color: #000;
-          transition: all 0.3s;
           &:hover {
-            color: #caad80;
+            color: $primary;
           }
         }
       }
@@ -86,7 +85,7 @@
       top: 15px;
       right: 15px;
       font-size: 24px;
-      color: #caad80;
+      color: $primary;
     }
     &-txt {
       padding: 0 50px;
@@ -168,7 +167,7 @@
           height: 134px;
         }
         &.active.style {
-          height: 313px;
+          height: 316px;
         }
         a,
         span {
@@ -204,7 +203,7 @@
         top: 10%;
         left: 0;
         right: 0;
-        color: #d0d0d0;
+        color: #ddd;
       }
       h2 {
         padding-left: 25px;
@@ -240,15 +239,14 @@
         & > li {
           position: relative;
           a {
-            transition: all 0.3s;
             &:hover {
-              color: #caad80;
+              color: $primary;
             }
           }
         }
         & > li + li::after {
           content: "";
-          background-color: #7b7b7b;
+          background-color: lighten($secondary, 10);
           display: block;
           width: 1px;
           height: 18px;
@@ -268,18 +266,17 @@
           top: 50px;
           left: 20px;
           z-index: 1;
-          border-top: 3px solid #caad80;
-          border-bottom: 3px solid #caad80;
+          border-top: 3px solid $primary;
+          border-bottom: 3px solid $primary;
           opacity: 0;
           visibility: hidden;
           transition: opacity 0.3s;
           a {
             background-color: #fff;
             padding: 15px 50px;
-            border-bottom: 1px dashed #caad80;
-            transition: all 0.3s;
+            border-bottom: 1px dashed $primary;
             &:hover {
-              color: #c08d3a;
+              color: darken($primary, 10);
               background-color: #ddd;
             }
           }

@@ -1,15 +1,16 @@
-// 初始
+/* 初始 */
 @import 'reset';
+@import 'variable';
 @import 'base';
-// 元件
+/* 元件 */
 @import 'components/delModal';
 @import 'components/footer';
 @import 'components/navbar';
 @import 'components/productModal';
-@import 'components/swiper';
 @import 'components/pagination';
 @import 'components/veeValidate';
-// 前台
+@import 'components/card';
+/* 前台 */
 @import 'home';
 @import 'index';
 @import 'product';
@@ -17,11 +18,10 @@
 @import 'cart';
 @import 'cart-form';
 @import 'cart-complete';
-@import 'about';
 @import 'favorite';
 @import 'coupon-front';
 @import 'intro';
-// 後台
+/* 後台 */
 @import 'dashboard/login';
 @import 'dashboard/dashboard';
 @import 'dashboard/coupon';

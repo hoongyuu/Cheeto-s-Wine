@@ -1,13 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Frontend/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    component: Home,
+    component: () => import("../views/Frontend/Home.vue"),
     children: [
       {
         path: "",

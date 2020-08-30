@@ -103,7 +103,7 @@ export default {
           this.$swal.fire({
             icon: "success",
             title: `恭喜 ${this.list[this.prize].name} 優惠！！！`,
-            text: `${this.list[this.prize].text}`
+            text: this.list[this.prize].text
           });
         }, 500);
       } else {

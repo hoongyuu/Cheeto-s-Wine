@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="cart-complete-btn">
-        <a href="#" @click.prevent="continueShopping">
+        <a href="#" @click.prevent="continueShopping" class="btn">
           繼續購物 <i class="fas fa-angle-right"></i>
         </a>
       </div>
@@ -53,17 +53,14 @@
 </template>
 
 <script>
-import { cookie } from "@/assets/JS/cookie";
 export default {
   data() {
     return {
       data: {}
     };
   },
-  mixins: [cookie],
   created() {
-    // 利用 cookie 來取得訂單 ID
-    const orderId = this.getCookie("orderId");
+    const orderId = this.$route.query.orderId;
     this.getOrder(orderId);
     this.$bus.$emit("cartUpdate");
   },
@@ -73,10 +70,15 @@ export default {
       let loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/${id}`;
 
-      this.axios.get(api).then(res => {
-        this.data = res.data.data;
-        loader.hide();
-      });
+      this.axios
+        .get(api)
+        .then(res => {
+          this.data = res.data.data;
+          loader.hide();
+        })
+        .catch(() => {
+          loader.hide();
+        });
     },
     continueShopping() {
       this.$router.push("/products");

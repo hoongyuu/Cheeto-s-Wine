@@ -32,6 +32,7 @@
                   value="male"
                   id="cartMale"
                   v-model="formData.sex"
+                  required
                 />
                 <label for="cartFemale">小姐</label>
                 <input
@@ -40,6 +41,7 @@
                   value="female"
                   id="cartFemale"
                   v-model="formData.sex"
+                  required
                 />
               </div>
             </div>
@@ -64,8 +66,8 @@
                 </ValidationProvider>
               </div>
               <div class="item">
-                <ValidationProvider v-slot="{ classes }">
-                  <label for="cartBirth">生日</label>
+                <ValidationProvider v-slot="{ classes }" rules="required">
+                  <label for="cartBirth">生日 *</label>
                   <input
                     type="date"
                     id="cartBirth"
@@ -141,7 +143,13 @@
                 ></textarea>
               </div>
               <div class="cart-form-btn">
-                <button type="submit" :disabled="invalid">確認付款</button>
+                <button
+                  type="submit"
+                  class="btn"
+                  :class="{ disabled: invalid }"
+                >
+                  確認付款
+                </button>
               </div>
             </div>
           </form>
@@ -252,31 +260,32 @@ export default {
       let loader = this.$loading.show();
       let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
       this.readyLoad = false;
-      this.axios.get(api).then(res => {
-        this.cartData = res.data.data;
+      this.axios
+        .get(api)
+        .then(res => {
+          this.cartData = res.data.data;
 
-        api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
-        this.axios
-          .get(api)
-          .then(res => {
-            const tempData = res.data.data;
-            // vue loading-hide
-            loader.hide();
-            tempData.forEach(item => {
-              this.cartData.forEach(cartItem => {
-                if (item.id === cartItem.product.id) {
-                  this.$set(cartItem, "productData", item);
-                  setTimeout(() => {
-                    this.readyLoad = true;
-                  }, 0);
-                }
-              });
+          api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
+          return this.axios.get(api);
+        })
+        .then(res => {
+          const tempData = res.data.data;
+          // vue loading-hide
+          loader.hide();
+          tempData.forEach(item => {
+            this.cartData.forEach(cartItem => {
+              if (item.id === cartItem.product.id) {
+                this.$set(cartItem, "productData", item);
+                setTimeout(() => {
+                  this.readyLoad = true;
+                }, 0);
+              }
             });
-          })
-          .catch(() => {
-            loader.hide();
           });
-      });
+        })
+        .catch(() => {
+          loader.hide();
+        });
     },
     getCoupon() {
       // vue loading-show
@@ -323,8 +332,10 @@ export default {
       this.axios
         .post(api, order)
         .then(res => {
-          document.cookie = `orderId=${res.data.data.id}; expires=/; path=/`;
-          this.$router.push("/cart-complete");
+          this.$router.push({
+            path: "/cart-complete",
+            query: { orderId: res.data.data.id }
+          });
           loader.hide();
         })
         .catch(() => {

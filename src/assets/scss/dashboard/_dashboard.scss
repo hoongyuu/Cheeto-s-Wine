@@ -5,7 +5,7 @@
     h1 {
       font-size: 36px;
       margin-bottom: 15px;
-      color: #cdc;
+      color: #ccc;
     }
     &-list {
       display: flex;
@@ -15,14 +15,14 @@
         margin: 10px 0;
       }
       li + li {
-        border-left: 1px solid #caad80;
+        border-left: 1px solid $primary;
       }
       a {
         display: block;
         color: #fff;
         transition: all 0.3s;
         &:hover {
-          color: #caad80;
+          color: $primary;
         }
       }
     }

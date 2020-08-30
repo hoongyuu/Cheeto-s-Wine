@@ -5,13 +5,13 @@
     button {
       border: 0;
       border-radius: 5px;
-      background-color: #ff6645;
+      background-color: $deep-primary;
       color: #fff;
       font-size: 16px;
       padding: 10px 20px;
       transition: all 0.3s;
       &:hover {
-        background-color: darken(#ff6645, 6);
+        background-color: darken($deep-primary, 6);
       }
     }
   }
@@ -24,12 +24,12 @@
     }
   }
   &-title {
-    color: #4b4b4b;
+    color: $secondary;
     font-size: 32px;
     font-weight: bold;
     text-align: center;
     padding: 40px 0;
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid lighten($secondary, 20);
   }
   &-edit {
     border: 1px solid #3b3bff;
@@ -57,8 +57,8 @@
     }
     th {
       padding: 20px 0;
-      border-top: 1px solid #9c9c9c;
-      border-bottom: 1px solid #9c9c9c;
+      border-top: 1px solid lighten($secondary, 20);
+      border-bottom: 1px solid lighten($secondary, 20);
     }
     td {
       padding: 15px 0;

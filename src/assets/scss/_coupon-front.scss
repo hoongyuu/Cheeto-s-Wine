@@ -5,7 +5,7 @@
     text-align: center;
     h2 {
       font-family: "Luckiest Guy", cursive;
-      color: #ff6645;
+      color: $deep-primary;
       font-size: 45px;
       margin-bottom: 15px;
       letter-spacing: 2px;
@@ -13,7 +13,7 @@
     p {
       font-weight: bold;
       font-size: 18px;
-      color: #7b7b7b;
+      color: lighten($secondary, 10);
       margin-bottom: 40px;
       letter-spacing: 1px;
     }
@@ -26,7 +26,7 @@
     height: 326px;
     margin: 0 auto;
     border-radius: 8px;
-    background: #caad80;
+    background: $primary;
     background-size: 326px 326px;
     position: relative;
     .bg-main {
@@ -83,13 +83,13 @@
         justify-content: center;
         align-items: center;
         background: rgb(255, 255, 255);
-        border: 2px solid rgba(227, 161, 0, 1);
+        border: 2px solid $deep-primary;
         border-radius: 8px;
         p {
           text-align: center;
           font-size: 18px;
           font-weight: bold;
-          color: #7b7b7b;
+          color: lighten($secondary, 10);
         }
       }
       li:nth-child(1) {

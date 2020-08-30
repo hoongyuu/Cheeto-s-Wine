@@ -37,10 +37,24 @@
           :class="{ active: mobile.category, style: mobile.style }"
         >
           <li>
-            <a href="#" @click.prevent="wineStyle = '所有酒款'">所有酒款</a>
+            <a
+              href="#"
+              @click.prevent="
+                wineStyle = '所有酒款';
+                mobile.category = false;
+              "
+              >所有酒款</a
+            >
           </li>
           <li>
-            <a href="#" @click.prevent="wineStyle = '熱門酒款'">熱門酒款</a>
+            <a
+              href="#"
+              @click.prevent="
+                wineStyle = '熱門酒款';
+                mobile.category = false;
+              "
+              >熱門酒款</a
+            >
           </li>
           <li>
             <span @click="mobile.style = !mobile.style">
@@ -49,22 +63,46 @@
             </span>
             <ul>
               <li>
-                <a href="#" @click.prevent="wineStyle = '香檳氣泡酒'">
+                <a
+                  href="#"
+                  @click.prevent="
+                    wineStyle = '香檳氣泡酒';
+                    mobile.category = false;
+                  "
+                >
                   氣泡酒
                 </a>
               </li>
               <li>
-                <a href="#" @click.prevent="wineStyle = '葡萄酒'">
+                <a
+                  href="#"
+                  @click.prevent="
+                    wineStyle = '葡萄酒';
+                    mobile.category = false;
+                  "
+                >
                   葡萄酒
                 </a>
               </li>
               <li>
-                <a href="#" @click.prevent="wineStyle = '威士忌'">
+                <a
+                  href="#"
+                  @click.prevent="
+                    wineStyle = '威士忌';
+                    mobile.category = false;
+                  "
+                >
                   威士忌
                 </a>
               </li>
               <li>
-                <a href="#" @click.prevent="wineStyle = '其他酒類'">
+                <a
+                  href="#"
+                  @click.prevent="
+                    wineStyle = '其他酒類';
+                    mobile.category = false;
+                  "
+                >
                   其他酒類
                 </a>
               </li>
@@ -76,12 +114,24 @@
             </span>
             <ul>
               <li>
-                <a href="#" @click.prevent="sortData = 'highToLow'">
+                <a
+                  href="#"
+                  @click.prevent="
+                    sortData = 'highToLow';
+                    mobile.style = false;
+                  "
+                >
                   價格：高到低
                 </a>
               </li>
               <li>
-                <a href="#" @click.prevent="sortData = 'lowToHigh'">
+                <a
+                  href="#"
+                  @click.prevent="
+                    sortData = 'lowToHigh';
+                    mobile.style = false;
+                  "
+                >
                   價格：低到高
                 </a>
               </li>
@@ -134,11 +184,10 @@
 </template>
 
 <script>
-import spanner from "@/components/Span";
-import { addCart } from "@/assets/JS/addCart";
-import { checkNum } from "@/assets/JS/checkNum";
-import { stare } from "@/assets/JS/stare";
-import { cookie } from "@/assets/JS/cookie";
+import spanner from "@/components/Spanner.vue";
+import addCart from "@/assets/JS/addCart";
+import checkNum from "@/assets/JS/checkNum";
+import stare from "@/assets/JS/stare";
 export default {
   data() {
     return {
@@ -153,13 +202,12 @@ export default {
       spannerStatus: ""
     };
   },
-  mixins: [addCart, checkNum, cookie, stare],
+  mixins: [addCart, checkNum, stare],
   components: { spanner },
   created() {
-    // 取得 Cookie
-    this.wineStyle = this.getCookie("wineType");
-    // 刪除cookie，才不會重新進入時保持 wineType
-    this.delCookie("wineType");
+    if (this.$route.query.wineStyle) {
+      this.wineStyle = this.$route.query.wineStyle;
+    }
     this.getProductData();
   },
   methods: {
@@ -186,8 +234,7 @@ export default {
       });
     },
     goDetail(item) {
-      document.cookie = `wineId=${item.id}; expires=/; path=/`;
-      this.$router.push("/product");
+      this.$router.push({ path: "/product", query: { wineId: item.id } });
     }
   },
   computed: {

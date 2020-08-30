@@ -1,5 +1,5 @@
 import $ from "jquery";
-export const stare = {
+export default {
   data() {
     return {
       stareData: []

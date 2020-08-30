@@ -1,6 +1,5 @@
 .product {
-  background: url(https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproduct-hero.jpg?alt=media&token=52ca07c7-b2f6-44fe-ba49-cd982a588a15);
-  background-repeat: no-repeat;
+  background: url(https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproduct-hero-mobile.jpg?alt=media&token=a735c6b2-c3be-47ae-9f6d-d8bf67158d40)no-repeat;
   padding-bottom: 60px;
   &-main {
     display: flex;
@@ -8,7 +7,7 @@
     margin-bottom: 50px;
     &-img {
       width: 100%;
-      padding: 0 50px;
+      padding: 0 50px 15px;
       box-sizing: border-box;
       img {
         width: 100%;
@@ -18,19 +17,15 @@
       position: relative;
       padding: 0px 15px;
       h4 {
-        color: #4b4b4b;
         font-size: 18px;
         margin-bottom: 10px;
       }
       h2 {
-        color: #292245;
         font-size: 20px;
         margin-bottom: 20px;
       }
       p {
-        color: #7b7b7b;
         margin-bottom: 20px;
-        font-weight: 300;
       }
     }
     &-favorite {
@@ -38,26 +33,26 @@
       top: 15px;
       right: 15px;
       font-size: 24px;
-      color: #caad80;
+      color: $primary;
       cursor: pointer;
     }
     &-box {
       display: flex;
       justify-content: space-between;
       padding: 10px 5px;
-      border-top: 1px solid #9a9a9a;
-      border-bottom: 1px solid #9a9a9a;
+      border-top: 1px solid lighten($secondary, 30);
+      border-bottom: 1px solid lighten($secondary, 30);
       margin-bottom: 20px;
     }
     &-price {
       .sale-price {
         display: inline-block;
-        color: #ff6645;
+        color: $deep-primary;
         font-size: 30px;
         margin-right: 8px;
       }
       .price {
-        color: #9a9a9a;
+        color: lighten($secondary, 30);
         text-decoration: line-through;
       }
     }
@@ -68,7 +63,7 @@
         font-weight: 300;
       }
       button {
-        border: 1px solid #9a9a9a;
+        border: 1px solid lighten($secondary, 30);
         width: 40px;
         height: 40px;
         color: #7b7b7b;
@@ -82,38 +77,30 @@
       input {
         width: 40px;
         border: 0;
-        border-top: 1px solid #9a9a9a;
-        border-bottom: 1px solid #9a9a9a;
+        border-top: 1px solid lighten($secondary, 30);
+        border-bottom: 1px solid lighten($secondary, 30);
         background-color: #fff;
-        color: #4b4b4b;
+        color: $secondary;
         text-align: center;
         font-size: 16px;
       }
     }
     &-btn {
       button {
-        border: 0;
-        border-radius: 5px;
         padding: 8px 0;
-        transition: all 0.3s;
       }
     }
     &-cart {
       width: 49%;
       margin-right: 2%;
       background-color: #ccc;
-      color: #4b4b4b;
+      color: $secondary;
       &:hover {
         background-color: darken(#ccc, 10);
       }
     }
     &-buy {
       width: 49%;
-      background-color: #ff6645;
-      color: #fff;
-      &:hover {
-        background-color: darken(#ff6645, 10);
-      }
     }
   }
   &-info {
@@ -126,7 +113,7 @@
       }
       p {
         line-height: 2;
-        color: #4b4b4b;
+        color: $secondary;
         font-weight: 300;
       }
     }
@@ -141,27 +128,32 @@
           width: 20%;
           color: #000;
           i {
-            color: #7b7b7b;
+            color: lighten($secondary, 10);
             padding-right: 5px;
           }
         }
         h4 {
           width: 80%;
-          color: #6b6b6b;
+          color: lighten($secondary, 20);
           padding: 0 0 15px;
           border-bottom: 1px solid #ccc;
         }
       }
     }
   }
+  &-swiper {
+    display: none;
+  }
 }
 @media (min-width: 769px) {
   .product {
+    background: url(https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproduct-hero.jpg?alt=media&token=52ca07c7-b2f6-44fe-ba49-cd982a588a15)no-repeat;
     &-main {
       flex-direction: row;
       align-items: center;
       &-img {
         width: 50%;
+        padding: 0 50px;
       }
       &-txt {
         width: 40%;
@@ -196,9 +188,13 @@
       }
     }
     &-swiper {
+      display: block;
       &-title {
         font-size: 26px;
         padding-bottom: 20px;
+      }
+      .card-price {
+        width: 100%;
       }
     }
   }

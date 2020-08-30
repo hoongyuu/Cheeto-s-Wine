@@ -7,8 +7,12 @@
 .fade-leave-to {
   opacity: 0;
 }
+*::selection {
+  background-color: $primary;
+  color: $bg-primary;
+}
 body {
-  background-color: #f0efed;
+  background-color: $bg-primary;
   font-family: "Noto Sans TC", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,6 +24,14 @@ body {
 }
 a {
   text-decoration: none;
+}
+a,
+button {
+  transition: all 0.3s;
+  &.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
 }
 input,
 button,
@@ -45,9 +57,21 @@ img {
   max-width: 960px;
   margin: 0 auto;
 }
+.btn {
+  background-color: $deep-primary;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+  transition: all 0.3s;
+  &:hover {
+    background-color: darken($deep-primary, 10);
+  }
+}
 .btn-init {
   display: inline-block;
-  color: #4b4b4b;
+  color: $secondary;
   font-size: 12px;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
@@ -55,8 +79,8 @@ img {
   letter-spacing: 1px;
   transition: all 0.3s;
   &:hover {
-    color: #867355;
-    border-color: #867355;
+    color: darken($primary, 20);
+    border-color: darken($primary, 20);
     background-color: #fff;
   }
 }
@@ -65,21 +89,39 @@ img {
   right: 40px;
   bottom: 40px;
   z-index: 999;
-  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
   font-size: 20px;
-  background-color: #cc9f5a;
+  background-color: darken($primary, 10);
   border-radius: 50%;
   color: #fff;
   visibility: hidden;
   opacity: 0;
   transition: all 1s;
   &:hover {
-    background-color: darken(#cc9f5a, 10);
+    background-color: darken($primary, 30);
   }
   &.active {
     visibility: visible;
     opacity: 1;
   }
+}
+.item-title {
+  color: $title;
+  line-height: 1.2;
+}
+.item-info {
+  color: lighten($secondary, 10);
+  display: block;
+  font-weight: 300;
+  font-size: 14px;
+}
+.item-winery {
+  font-size: 14px;
+  color: $secondary;
 }
 @media (min-width: 1200px) {
   .container {

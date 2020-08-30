@@ -16,7 +16,7 @@
     h2,
     &-cart,
     &-hamburger {
-      color: #caad80;
+      color: $primary;
       transition: all 0.3s;
     }
     &-btn {
@@ -53,8 +53,7 @@
       li:hover .header-navbar-link {
         color: #fff;
       }
-      li,
-      .header-navbar-link {
+      li {
         transition: all 0.3s;
       }
     }
@@ -83,16 +82,16 @@
         height: 0;
         overflow: hidden;
         transition: all 1s;
-        background-color: #f0efed;
+        background-color: $bg-primary;
         &.active {
           height: 267px;
-          border-bottom: 3px solid #caad80;
+          border-bottom: 3px solid $primary;
         }
       }
       &-link {
         padding-left: 15px;
         &.active {
-          background-color: #caad80;
+          background-color: $primary;
           color: #fff;
         }
       }
@@ -132,10 +131,9 @@
       &-link {
         border-bottom: 0;
         text-align: center;
-        color: #caad80;
-        transition: all 0.3s;
+        color: $primary;
         &.active {
-          border-bottom: 3px solid #caad80;
+          border-bottom: 3px solid $primary;
         }
       }
       &-list.scroll &-link {
@@ -165,9 +163,8 @@
         }
         a {
           color: #fff;
-          transition: color 0.3s;
           &:hover {
-            color: #caad80;
+            color: $primary;
           }
         }
       }
@@ -176,19 +173,17 @@
           font-family: "Dancing Script", cursive;
           font-size: 40px;
           font-weight: 700;
-          color: #caad80;
+          color: $primary;
           padding: 15px 0;
           text-align: center;
-          transition: all 0.3s;
         }
       }
       &-btn {
         justify-content: flex-end;
         a {
-          color: #caad80;
+          color: $primary;
           font-weight: 300;
           font-size: 12px;
-          transition: color 0.3s;
           &:hover {
             color: #fff;
           }

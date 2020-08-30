@@ -17,9 +17,9 @@
           <div class="cart-main-info">
             <img :src="item.product.imageUrl" />
             <div class="cart-main-txt">
-              <h4>{{ item.productData.options.winery }}</h4>
-              <h3>{{ item.product.title }}</h3>
-              <span>
+              <h4 class="item-winery">{{ item.productData.options.winery }}</h4>
+              <h3 class="item-title">{{ item.product.title }}</h3>
+              <span class="item-info">
                 {{ item.productData.options.year }} |
                 {{ item.productData.options.capacity }} |
                 {{ item.product.category }}
@@ -54,7 +54,7 @@
           </span>
         </div>
         <div class="cart-main-confirm">
-          <router-link to="/cart-form">確認購物單</router-link>
+          <router-link to="/cart-form" class="btn">確認購物單</router-link>
         </div>
         <!-- delModal -->
         <delModel
@@ -64,13 +64,16 @@
           @update="getCartData()"
         ></delModel>
       </div>
+      <div class="cart-main" v-else>
+        <h3 class="cart-main-empty">您的購物車目前是空的</h3>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { checkNum } from "@/assets/JS/checkNum";
-import delModel from "@/components/DelModal";
+import checkNum from "@/assets/JS/checkNum";
+import delModel from "@/components/DelModal.vue";
 export default {
   data() {
     return {
@@ -97,32 +100,33 @@ export default {
       let loader = this.$loading.show();
       let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
       this.readyLoad = false;
-      this.axios.get(api).then(res => {
-        this.cartData = res.data.data;
+      this.axios
+        .get(api)
+        .then(res => {
+          this.cartData = res.data.data;
 
-        api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
-        this.axios
-          .get(api)
-          .then(res => {
-            const tempData = res.data.data;
-            // vue loading-hide
-            loader.hide();
-            tempData.forEach(item => {
-              this.cartData.forEach(cartItem => {
-                this.$set(cartItem, "showModal", false);
-                if (item.id === cartItem.product.id) {
-                  this.$set(cartItem, "productData", item);
-                  setTimeout(() => {
-                    this.readyLoad = true;
-                  }, 0);
-                }
-              });
+          api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
+          return this.axios.get(api);
+        })
+        .then(res => {
+          const tempData = res.data.data;
+          // vue loading-hide
+          loader.hide();
+          tempData.forEach(item => {
+            this.cartData.forEach(cartItem => {
+              this.$set(cartItem, "showModal", false);
+              if (item.id === cartItem.product.id) {
+                this.$set(cartItem, "productData", item);
+                setTimeout(() => {
+                  this.readyLoad = true;
+                }, 0);
+              }
             });
-          })
-          .catch(() => {
-            loader.hide();
           });
-      });
+        })
+        .catch(() => {
+          loader.hide();
+        });
     },
     updateData(item, type) {
       // vue loading-show

@@ -4,7 +4,11 @@
       <div class="header-mobile">
         <h2>Cheeto's Wine</h2>
         <div class="header-mobile-btn">
-          <router-link to="/cart" class="header-mobile-cart">
+          <router-link
+            to="/cart"
+            class="header-mobile-cart"
+            @click.native="mobileBtn = false"
+          >
             <i class="fas fa-shopping-cart"></i>
           </router-link>
           <button
@@ -20,6 +24,7 @@
         <ul class="header-navbar-list" :class="{ active: mobileBtn }">
           <li>
             <router-link
+              @click.native="mobileBtn = false"
               class="header-navbar-link"
               to="/index"
               :class="{ active: $route.name === 'Index' }"
@@ -29,6 +34,7 @@
           </li>
           <li>
             <router-link
+              @click.native="mobileBtn = false"
               class="header-navbar-link"
               to="/products"
               :class="{ active: $route.name === 'Products' }"
@@ -38,6 +44,7 @@
           </li>
           <li>
             <router-link
+              @click.native="mobileBtn = false"
               class="header-navbar-link"
               to="/intro"
               :class="{ active: $route.name === 'Intro' }"
@@ -47,6 +54,7 @@
           </li>
           <li>
             <router-link
+              @click.native="mobileBtn = false"
               class="header-navbar-link"
               to="/coupon"
               :class="{ active: $route.name === 'Coupon-front' }"
@@ -56,6 +64,7 @@
           </li>
           <li class="header-navbar-mobile">
             <router-link
+              @click.native="mobileBtn = false"
               class="header-navbar-link"
               to="/favorite"
               :class="{ active: $route.name === 'Favorite' }"
@@ -105,7 +114,7 @@
             class="header-main-cart"
             v-if="cartData.length === 0"
           >
-            <i class="fas fa-shopping-cart"></i> 購物車 ( 目前沒有商品唷！ )
+            <i class="fas fa-shopping-cart"></i> 購物車 ( 沒有商品 )
           </router-link>
           <router-link to="/cart" class="header-main-cart" v-else>
             <i class="fas fa-shopping-cart"></i> 購物車( {{ cartData.length }} )
@@ -133,17 +142,15 @@ export default {
     this.getCartData();
   },
   mounted() {
-    $(document).ready(() => {
-      $(window).scroll(() => {
-        const scrollTop = $(".header").offset().top;
-        if (scrollTop > 150) {
-          $(".header-navbar-list").addClass("scroll");
-          $(".header-main").addClass("scroll");
-        } else {
-          $(".header-navbar-list").removeClass("scroll");
-          $(".header-main").removeClass("scroll");
-        }
-      });
+    $(window).scroll(() => {
+      const scrollTop = $(".header").offset().top;
+      if (scrollTop > 150) {
+        $(".header-navbar-list").addClass("scroll");
+        $(".header-main").addClass("scroll");
+      } else {
+        $(".header-navbar-list").removeClass("scroll");
+        $(".header-main").removeClass("scroll");
+      }
     });
   },
   methods: {

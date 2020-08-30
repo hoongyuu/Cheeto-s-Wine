@@ -26,14 +26,13 @@
   }
   &-btn-wrap {
     a {
-      color: #4b4b4b;
+      color: $secondary;
       font-size: 12px;
       font-weight: 300;
       letter-spacing: 1px;
       padding: 6px 24px;
-      transition: all 0.3s;
       &:hover {
-        color: #caad80;
+        color: $primary;
       }
       &:last-of-type {
         border-left: 1px solid #000;
@@ -108,7 +107,7 @@
       color: #fff;
       border-color: #fff;
       &:hover {
-        color: #867355;
+        color: darken($primary, 20);
       }
     }
   }
@@ -127,7 +126,7 @@
     &-txt {
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: 20%;
       color: #fff;
       transform: translate(-50%, -50%);
       z-index: 1;
@@ -153,7 +152,7 @@
         }
         &:hover {
           background-color: rgba(255, 255, 255, 0.8);
-          color: #4b4b4b;
+          color: $secondary;
         }
       }
     }
@@ -181,14 +180,14 @@
       top: 20%;
       right: 0;
       left: 0;
-      color: #313131;
+      color: $secondary;
       letter-spacing: 1.2px;
       opacity: 0;
       transition: all 0.5s;
       h4 {
         font-size: 14px;
         margin-bottom: 15px;
-        color: #616161;
+        color: lighten($secondary, 10);
       }
       h3 {
         font-size: 18px;
@@ -270,12 +269,12 @@
   .index-hero {
     &-txt {
       h2 {
-        font-size: 12px;
+        font-size: 16px;
       }
       h3 {
         font-size: 35px;
         span {
-          font-size: 65px;
+          font-size: 70px;
         }
       }
     }
@@ -286,12 +285,12 @@
     &-txt {
       color: #fff;
       h2 {
-        font-size: 14px;
+        font-size: 16px;
       }
       h3 {
-        font-size: 30px;
+        font-size: 40px;
         span {
-          font-size: 70px;
+          font-size: 80px;
         }
       }
     }

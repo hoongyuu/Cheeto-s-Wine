@@ -12,20 +12,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #7b7b7b;
+      border-bottom: 1px solid lighten($secondary, 20);
       padding-bottom: 16px;
       margin-bottom: 40px;
       h2 {
-        color: #333;
+        color: $secondary;
         font-size: 28px;
       }
       a {
         background-color: #fff;
         border-radius: 50px;
-        color: #7b7b7b;
+        color: lighten($secondary, 20);
         font-size: 14px;
         padding: 10px 15px;
-        transition: all 0.3s;
         i {
           padding-right: 5px;
         }
@@ -41,16 +40,16 @@
     input,
     select {
       border: 0;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid $secondary;
       background-color: transparent;
       box-sizing: border-box;
-      color: #333;
+      color: $secondary;
       display: block;
       padding: 5px 10px;
       width: 100%;
     }
     textarea {
-      color: #333;
+      color: $secondary;
       width: 100%;
       padding: 10px;
       box-sizing: border-box;
@@ -89,10 +88,6 @@
     &-btn {
       text-align: right;
       button {
-        border: 0;
-        border-radius: 5px;
-        background-color: #ff6645;
-        color: #fff;
         padding: 5px 12px;
         font-size: 16px;
         &:disabled {
@@ -107,7 +102,7 @@
     box-sizing: border-box;
     padding: 30px 15px;
     &-tips {
-      border: 1px solid #7b7b7b;
+      border: 1px solid lighten($secondary, 20);
       padding: 16px;
       line-height: 1.4;
       margin-bottom: 30px;
@@ -123,7 +118,7 @@
         align-items: center;
         border-bottom: 1px solid #ccc;
         padding: 15px 15px;
-        color: #6b6b6b;
+        color: lighten($secondary, 10);
       }
     }
     &-coupon {
@@ -133,15 +128,15 @@
       input {
         padding: 8px 10px;
         width: 50%;
-        border: 1px solid #7b7b7b;
+        border: 1px solid lighten($secondary, 20);
         border-right: 0;
         border-radius: 3px 0 0 3px;
-        color: #333;
+        color: $secondary;
       }
       button {
         border-radius: 0 3px 3px 0;
-        background-color: #ff6645;
-        border: 1px solid #ff6645;
+        background-color: $deep-primary;
+        border: 1px solid $deep-primary;
         color: #fff;
       }
     }
@@ -149,7 +144,7 @@
       background-color: #fff;
       h3 {
         border-bottom: 1px solid #ccc;
-        color: #333;
+        color: $secondary;
         padding: 15px;
       }
     }
@@ -173,7 +168,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        color: #333;
+        color: $secondary;
         h5,
         h4 {
           font-size: 14px;
@@ -187,13 +182,13 @@
         }
         span {
           font-size: 12px;
-          color: #7b7b7b;
+          color: lighten($secondary, 20);
         }
       }
       .quantity {
         display:  flex;
         justify-content: space-between;
-        color: #333;
+        color: $secondary;
       }
     }
   }
@@ -236,9 +231,8 @@
       &-btn {
         button {
           padding: 5px 20px;
-          transition: all 0.3s;
           &:hover {
-            background-color:darken(#ff6645, 10);
+            background-color:darken($deep-primary, 10);
           }
         }
       }
@@ -253,10 +247,6 @@
         }
         button {
           padding: 8px 5px;
-          transition: all 0.3s;
-          &:hover {
-            background-color:darken(#ff6645, 10);
-          }
         }
       }
       &-products {

@@ -9,23 +9,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #7b7b7b;
+    color: lighten($secondary, 20);
     border: 1px solid #ccc;
     border-radius: 50%;
     width: 35px;
     height: 35px;
-    transition: all 0.3s;
     &:hover {
       background-color: darken(#fff, 13);
-      color: darken(#caad80, 10);
+      color: darken($primary, 10);
     }
     &.disabled {
-      color: lighten(#caad80, 15);
+      color: lighten($primary, 15);
       pointer-events: none;
     }
     &.active {
       pointer-events: none;
-      background-color: #caad80;
+      background-color: $primary;
       color: #fff;
     }
   }

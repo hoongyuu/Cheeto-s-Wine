@@ -44,13 +44,13 @@
     }
     &-txt {
       h2 {
-        color: #ff6645;
+        color: $deep-primary;
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 20px;
       }
       p {
-        color: #6b6b6b;
+        color: lighten($secondary, 10);
         line-height: 1.4;
         span {
           display: block;
@@ -67,12 +67,12 @@
       box-sizing: border-box;
     }
     .item {
-      background-color: #f0efed;
+      background-color: $bg-primary;
       padding: 20px;
-      border: 1px solid #7b7b7b;
+      border: 1px solid lighten($secondary, 10);
       border-radius: 8px;
       box-shadow: 3px 3px 6px #ccc;
-      color: #4b4b4b;
+      color: $secondary;
       margin-bottom: 15px;
       h2 {
         font-family: "Playfair Display", serif;
@@ -160,7 +160,7 @@
         &:hover {
           box-shadow: 8px 8px 8px #aaa;
           h2 {
-            color: #ff6645;
+            color: $deep-primary;
           }
         }
       }
@@ -177,7 +177,7 @@
         top: 50%;
         width: 2px;
         height: 100%;
-        background-color: #7b7b7b;
+        background-color: lighten($secondary, 20);
       }
       li:nth-child(odd)::before {
         right: 0;
@@ -196,8 +196,8 @@
         top: 50%;
         width: 10px;
         height: 10px;
-        background-color: #f0efed;
-        border: 1px solid #7b7b7b;
+        background-color: $bg-primary;
+        border: 1px solid lighten($secondary, 20);
         border-radius: 50%;
         z-index: 10;
       }
@@ -215,7 +215,7 @@
         top: 50%;
         width: 100%;
         height: 1px;
-        background-color: #7b7b7b;
+        background-color: lighten($secondary, 20);
         z-index: -1;
       }
       .item:nth-child(odd)::before {

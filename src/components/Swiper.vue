@@ -1,22 +1,20 @@
 <template>
   <swiper ref="mySwiper" :options="swiperOptions">
     <swiper-slide v-for="item in productData" :key="item.id">
-      <div class="swiper-wrap" @click="setCookie(item)">
-        <div class="swiper-img">
+      <div class="card-wrap" @click="postId(item)">
+        <div class="card-img">
           <img :src="item.imageUrl" />
         </div>
-        <div class="swiper-txt">
-          <h4>{{ item.options.winery }}</h4>
-          <a href="#" @click.prevent="setCookie(item)">
-            <h3>{{ item.title }}</h3>
-          </a>
-          <div class="swiper-info">
-            <span>
+        <div class="card-txt">
+          <h4 class="item-winery">{{ item.options.winery }}</h4>
+          <h3 class="item-title">{{ item.title }}</h3>
+          <div class="card-info">
+            <span class="item-info">
               {{ item.options.year }} | {{ item.options.capacity }} |
               {{ item.category }}
             </span>
           </div>
-          <div class="swiper-price">
+          <div class="card-price">
             <span class="sale-price">$ {{ item.price | currency }}</span>
             <span class="price">$ {{ item.origin_price | currency }}</span>
           </div>
@@ -40,9 +38,8 @@ export default {
   },
   props: ["productData"],
   methods: {
-    setCookie(item) {
-      document.cookie = `wineId=${item.id}; expires=/; path=/`;
-      this.$emit("update");
+    postId(item) {
+      this.$emit("update", item.id);
     }
   },
   computed: {

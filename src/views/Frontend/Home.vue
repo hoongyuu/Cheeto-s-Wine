@@ -16,7 +16,6 @@ import indexFooter from "@/components/Footer.vue";
 import $ from "jquery";
 
 export default {
-  name: "Home",
   components: {
     navbar,
     indexFooter

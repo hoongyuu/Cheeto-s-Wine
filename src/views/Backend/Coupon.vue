@@ -119,8 +119,8 @@
 </template>
 
 <script>
-import { cookie } from "@/assets/JS/cookie";
-import delModel from "@/components/DelModal";
+import cookie from "@/assets/JS/cookie";
+import delModel from "@/components/DelModal.vue";
 import $ from "jquery";
 
 export default {

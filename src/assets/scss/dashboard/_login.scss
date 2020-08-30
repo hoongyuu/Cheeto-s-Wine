@@ -16,7 +16,7 @@
   text-align: center;
   color: #fff;
   h2 {
-    border-bottom: 3px solid #c6a777;
+    border-bottom: 3px solid $primary;
     display: inline-block;
     font-size: 24px;
     font-weight: bold;
@@ -41,7 +41,7 @@
       padding: 5px 10px 8px;
       background-color: transparent;
       border: 0;
-      border-bottom: 2px solid #c6a777;
+      border-bottom: 2px solid $primary;
     }
   }
   &-btn {
@@ -50,8 +50,8 @@
       width: 100%;
       color: #fff;
       padding: 8px 0;
-      border: 2px solid #ff5e00;
-      background-color: #ff5e00;
+      border: 2px solid $deep-primary;
+      background-color: $deep-primary;
       border-radius: 50px;
       transition: all 0.2s;
     }
@@ -72,7 +72,7 @@
     }
     &-item {
       input::placeholder {
-        color: #b1b1b1;
+        color: #ccc;
       }
     }
     &-btn {
@@ -83,7 +83,7 @@
         background-color: transparent;
         transition: all 0.3s;
         &:hover {
-          background-color: #ff5e00;
+          background-color: $deep-primary;
         }
       }
     }

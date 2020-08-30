@@ -1,4 +1,4 @@
-export const addCart = {
+export default {
   methods: {
     addCart(item, type) {
       // vue loading-show

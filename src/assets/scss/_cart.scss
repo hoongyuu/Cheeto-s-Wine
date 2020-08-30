@@ -6,11 +6,11 @@
   &-header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid $secondary;
     padding-bottom: 5px;
     margin-bottom: 20px;
     h2 {
-      color: #333;
+      color: $secondary;
       padding-bottom: 15px;
       font-size: 18px;
       font-weight: bold;
@@ -18,11 +18,10 @@
     a {
       background-color: #fff;
       border-radius: 50px;
-      color: #7b7b7b;
+      color: lighten($secondary, 20);
       display: block;
       padding: 10px 15px;
       letter-spacing: 1px;
-      transition: all 0.3s;
       font-size: 14px;
       &:hover {
         background-color: darken(#fff, 10);
@@ -47,6 +46,12 @@
         margin-right: 20px;
       }
     }
+    &-empty {
+      color: $secondary;
+      font-size: 20px;
+      padding-top: 30px;
+      text-align: center;
+    }
     &-info {
       display: flex;
       padding: 20px;
@@ -54,21 +59,10 @@
     &-txt {
       padding-top: 5px;
       h4 {
-        font-size: 14px;
-        font-weight: 300;
-        color: #6b6b6b;
         margin: 0 0 10px 0;
       }
       h3 {
         margin: 0 0 20px 0;
-        color: #292245;
-        line-height: 1.2;
-      }
-      span {
-        color: #919191;
-        display: block;
-        font-weight: 300;
-        font-size: 14px;
       }
     }
     &-quantity {
@@ -84,7 +78,7 @@
         border: 1px solid #9a9a9a;
         width: 40px;
         font-size: 20px;
-        color: #4b4b4b;
+        color: $secondary;
         &:first-of-type {
           border-radius: 5px 0 0 5px;
         }
@@ -98,7 +92,7 @@
         border-top: 1px solid #9a9a9a;
         border-bottom: 1px solid #9a9a9a;
         background-color: #fff;
-        color: #4b4b4b;
+        color: $secondary;
         text-align: center;
         font-size: 16px;
       }
@@ -106,7 +100,7 @@
     &-price {
       display: block;
       width: 100%;
-      color: #ff6645;
+      color: $deep-primary;
       font-size: 20px;
       text-align: right;
       padding: 20px;
@@ -125,9 +119,8 @@
         border: 1px solid #9b9b9b;
         border-radius: 50%;
         background-color: #fff;
-        color: #6b6b6b;
+        color: lighten($secondary, 10);
         font-size: 18px;
-        transition: all 0.3s;
         &:hover {
           color: #fff;
           background-color: #d44;
@@ -138,12 +131,6 @@
       display: flex;
       a {
         flex: 1;
-        text-align: center;
-        padding: 8px;
-        background-color: #ff6645;
-        border: 0;
-        border-radius: 5px;
-        color: #fff;
       }
     }
   }
@@ -161,6 +148,9 @@
         img {
           background-color: #fff;
         }
+      }
+      &-empty {
+        font-size: 30px;
       }
       &-info {
         padding: 0;
@@ -187,10 +177,6 @@
         a {
           flex: none;
           padding: 8px 120px;
-          transition: all 0.3s;
-          &:hover {
-            background-color: darken(#ff6645, 10);
-          }
         }
       }
     }

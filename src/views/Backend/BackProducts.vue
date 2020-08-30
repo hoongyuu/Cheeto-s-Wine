@@ -46,7 +46,7 @@
         </tr>
       </table>
 
-      <modal
+      <productModal
         :class="{ active: showProductModal }"
         :data="newData"
         :token="token"
@@ -55,7 +55,7 @@
         ref="modal"
         @update="getProducts"
       >
-      </modal>
+      </productModal>
       <delModel
         :class="{ active: showDelModal }"
         :item="newData"
@@ -71,10 +71,10 @@
 </template>
 
 <script>
-import modal from "@/components/ProductModal";
-import delModel from "@/components/DelModal";
-import pagination from "@/components/Pagination";
-import { cookie } from "@/assets/JS/cookie";
+import productModal from "@/components/ProductModal.vue";
+import delModel from "@/components/DelModal.vue";
+import pagination from "@/components/Pagination.vue";
+import cookie from "@/assets/JS/cookie";
 export default {
   data() {
     return {
@@ -93,7 +93,7 @@ export default {
     };
   },
   mixins: [cookie],
-  components: { modal, delModel, pagination },
+  components: { productModal, delModel, pagination },
   created() {
     // 取得 token
     this.token = this.getCookie("hexToken");
@@ -106,11 +106,16 @@ export default {
       let loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/admin/ec/products?page=${page}`;
 
-      this.axios.get(api).then(res => {
-        this.data = res.data.data;
-        this.pages = res.data.meta.pagination;
-        loader.hide();
-      });
+      this.axios
+        .get(api)
+        .then(res => {
+          this.data = res.data.data;
+          this.pages = res.data.meta.pagination;
+          loader.hide();
+        })
+        .catch(() => {
+          loader.hide();
+        });
     },
     showModal(type, item) {
       switch (type) {

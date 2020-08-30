@@ -244,12 +244,10 @@ export default {
   },
   methods: {
     productDetail(id) {
-      document.cookie = `wineId=${id}; expires=/; path=/`;
-      this.$router.push("/product");
+      this.$router.push({ path: "/product", query: { wineId: id } });
     },
     filterWine(type) {
-      document.cookie = `wineType=${type}; expires=/; path=/`;
-      this.$router.push("/products");
+      this.$router.push({ path: "/products", query: { wineStyle: type } });
     }
   }
 };

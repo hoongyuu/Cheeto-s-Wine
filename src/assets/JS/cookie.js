@@ -1,4 +1,4 @@
-export const cookie = {
+export default {
   methods: {
     getCookie(name) {
       var arr = document.cookie.match(

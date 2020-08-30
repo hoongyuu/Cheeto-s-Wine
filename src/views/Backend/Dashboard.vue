@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { cookie } from "@/assets/JS/cookie";
+import cookie from "@/assets/JS/cookie";
 export default {
   mixins: [cookie],
   created() {

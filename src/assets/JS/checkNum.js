@@ -1,4 +1,4 @@
-export const checkNum = {
+export default {
   methods: {
     checkNum(item) {
       item.quantity = Number(item.quantity);
