@@ -70,6 +70,9 @@ export default {
   },
   methods: {
     move() {
+      if (this.times !== 0) {
+        return;
+      }
       const random = Math.floor(Math.random() * 8) + 1;
       this.speed = 250; // 每次開始前初始化轉動速度
       this.prize = random - 1; // 1-8 隨機抽獎

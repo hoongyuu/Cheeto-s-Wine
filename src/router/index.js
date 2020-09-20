@@ -84,6 +84,10 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  // eslint-disable-next-line no-unused-vars
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  },
   routes
 });
 

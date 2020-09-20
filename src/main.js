@@ -1,4 +1,5 @@
 import Vue from "vue";
+import Vuex from "vuex";
 // axios
 import axios from "axios";
 import VueAxios from "vue-axios";
@@ -26,9 +27,7 @@ import currency from "./filter/currency.js";
 // vue-router & app
 import App from "./App.vue";
 import router from "./router";
-
-// event bus
-Vue.prototype.$bus = new Vue();
+import store from "./store";
 
 Vue.config.productionTip = false;
 
@@ -36,17 +35,14 @@ Vue.config.productionTip = false;
 Vue.filter("currency", currency);
 
 // 加到 VUE 原型
+Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 Vue.use(VueSweetalert2);
 Vue.use(Loading, {
   canCancel: false,
-  color: "rgb(173, 92, 0)",
   loader: "dots", //spinner/dots/bars
-  width: 80,
-  height: 60,
-  backgroundColor: "#000",
-  isFullPage: true,
-  opacity: 0.5
+  backgroundColor: "rgb(173, 92, 0)",
+  isFullPage: true
 });
 Vue.use(VueAwesomeSwiper);
 
@@ -75,8 +71,10 @@ localize("zh_TW", TW);
 // 表單驗證元件
 Vue.component("ValidationProvider", ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
+Vue.component("Loading", Loading);
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");

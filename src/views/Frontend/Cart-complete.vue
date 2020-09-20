@@ -1,5 +1,10 @@
 <template>
   <div class="cart-complete">
+    <loading
+      loader="dots"
+      :active.sync="isLoading"
+      background-color="rgb(173, 92, 0)"
+    ></loading>
     <div class="container" v-if="data.products">
       <div class="cart-complete-header">
         <h2>付款成功</h2>
@@ -53,6 +58,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -62,22 +69,22 @@ export default {
   created() {
     const orderId = this.$route.query.orderId;
     this.getOrder(orderId);
-    this.$bus.$emit("cartUpdate");
+    this.getCartData();
   },
   methods: {
+    ...mapActions(["getCartData"]),
     getOrder(id) {
-      // vue loading-show
-      let loader = this.$loading.show();
+      this.$store.state.isLoading = true;
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders/${id}`;
 
       this.axios
         .get(api)
         .then(res => {
           this.data = res.data.data;
-          loader.hide();
+          this.$store.state.isLoading = false;
         })
         .catch(() => {
-          loader.hide();
+          this.$store.state.isLoading = false;
         });
     },
     continueShopping() {
@@ -85,6 +92,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["isLoading"]),
     totalMoney() {
       const products = this.data.products;
       const total = products.reduce((prev, item) => {

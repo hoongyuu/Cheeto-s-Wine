@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <loading
+      loader="dots"
+      :active.sync="isLoading"
+      background-color="rgb(173, 92, 0)"
+    ></loading>
     <div class="cart-form-wrap">
       <div class="cart-form">
         <div class="cart-form-header">
@@ -155,7 +160,7 @@
           </form>
         </ValidationObserver>
       </div>
-      <div class="cart-info" v-if="readyLoad">
+      <div class="cart-info">
         <p class="cart-info-tips">
           訂單確認完成後，5~7個工作天內宅配到貨或是通知指定門市取貨。
         </p>
@@ -232,11 +237,11 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      readyLoad: false,
-      cartData: [],
       couponCode: "",
       coupon: {},
       formData: {
@@ -255,41 +260,9 @@ export default {
     this.getCartData();
   },
   methods: {
-    getCartData() {
-      // vue loading-show
-      let loader = this.$loading.show();
-      let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.readyLoad = false;
-      this.axios
-        .get(api)
-        .then(res => {
-          this.cartData = res.data.data;
-
-          api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
-          return this.axios.get(api);
-        })
-        .then(res => {
-          const tempData = res.data.data;
-          // vue loading-hide
-          loader.hide();
-          tempData.forEach(item => {
-            this.cartData.forEach(cartItem => {
-              if (item.id === cartItem.product.id) {
-                this.$set(cartItem, "productData", item);
-                setTimeout(() => {
-                  this.readyLoad = true;
-                }, 0);
-              }
-            });
-          });
-        })
-        .catch(() => {
-          loader.hide();
-        });
-    },
+    ...mapActions(["getCartData"]),
     getCoupon() {
-      // vue loading-show
-      let loader = this.$loading.show();
+      this.$store.state.isLoading = true;
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/coupon/search`;
       const code = {
         code: this.couponCode
@@ -299,7 +272,7 @@ export default {
         .post(api, code)
         .then(res => {
           this.coupon = res.data.data;
-          loader.hide();
+          this.$store.state.isLoading = false;
           this.$swal.fire({
             position: "top-end",
             icon: "success",
@@ -309,7 +282,7 @@ export default {
           });
         })
         .catch(() => {
-          loader.hide();
+          this.$store.state.isLoading = false;
           this.$swal.fire({
             position: "top-end",
             icon: "error",
@@ -320,8 +293,7 @@ export default {
         });
     },
     formSubmit() {
-      // vue loading-show
-      let loader = this.$loading.show();
+      this.$store.state.isLoading = true;
       const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/orders`;
       const order = { ...this.formData };
 
@@ -336,7 +308,7 @@ export default {
             path: "/cart-complete",
             query: { orderId: res.data.data.id }
           });
-          loader.hide();
+          this.$store.state.isLoading = false;
         })
         .catch(() => {
           this.$swal.fire({
@@ -346,11 +318,12 @@ export default {
             showConfirmButton: false,
             timer: 1500
           });
-          loader.hide();
+          this.$store.state.isLoading = false;
         });
     }
   },
   computed: {
+    ...mapGetters(["cartData", "isLoading"]),
     totalMoney() {
       const total = this.cartData.reduce((prev, item) => {
         return prev + item.product.price * item.quantity;

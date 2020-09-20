@@ -1,5 +1,10 @@
 <template>
   <section class="products">
+    <loading
+      loader="dots"
+      :active.sync="isLoading"
+      background-color="rgb(173, 92, 0)"
+    ></loading>
     <div class="products-hero">
       <img
         src="https://firebasestorage.googleapis.com/v0/b/cheetoblog-8edf4.appspot.com/o/%E9%9B%BB%E5%95%86%E7%B6%B2%E7%AB%99%2Fproducts-hero.png?alt=media&token=ad237ae1-a02c-40fd-8732-e41ed6d1ffbc"
@@ -188,10 +193,10 @@ import spanner from "@/components/Spanner.vue";
 import addCart from "@/assets/JS/addCart";
 import checkNum from "@/assets/JS/checkNum";
 import stare from "@/assets/JS/stare";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      data: [],
       wineStyle: "",
       sortData: "",
       mobile: {
@@ -208,41 +213,22 @@ export default {
     if (this.$route.query.wineStyle) {
       this.wineStyle = this.$route.query.wineStyle;
     }
-    this.getProductData();
+    this.getProductsData();
   },
   methods: {
-    getProductData() {
-      // vue loading-show
-      let loader = this.$loading.show();
-      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
-
-      this.axios.get(api).then(res => {
-        this.data = res.data.data;
-        // vue loading-hide
-        loader.hide();
-        this.data.forEach(item => {
-          this.$set(item, "quantity", 1);
-          this.$set(item, "stared", false);
-          this.stareData =
-            JSON.parse(localStorage.getItem("favoriteWine")) || [];
-          this.stareData.forEach(stareItem => {
-            if (item.title === stareItem.title) {
-              this.$set(item, "stared", true);
-            }
-          });
-        });
-      });
-    },
+    ...mapActions("productsModules", ["getProductsData"]),
     goDetail(item) {
       this.$router.push({ path: "/product", query: { wineId: item.id } });
     }
   },
   computed: {
+    ...mapGetters("productsModules", ["productsData"]),
+    ...mapGetters(["isLoading"]),
     filterProduct() {
       let filterData = [];
       switch (this.wineStyle) {
         case "其他酒類":
-          this.data.forEach(item => {
+          this.productsData.forEach(item => {
             if (
               item.category === "清酒" ||
               item.category === "梅酒" ||
@@ -255,21 +241,21 @@ export default {
         case "香檳氣泡酒":
         case "威士忌":
         case "葡萄酒":
-          this.data.forEach(item => {
+          this.productsData.forEach(item => {
             if (item.category === this.wineStyle) {
               filterData.push(item);
             }
           });
           break;
         case "熱門酒款":
-          this.data.forEach(item => {
+          this.productsData.forEach(item => {
             if (item.options.popular === true) {
               filterData.push(item);
             }
           });
           break;
         default:
-          filterData = this.data;
+          filterData = this.productsData;
           break;
       }
       // 價格排序

@@ -126,6 +126,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 // jQuery
 import $ from "jquery";
 
@@ -133,18 +134,16 @@ export default {
   name: "Navbar",
   data() {
     return {
-      mobileBtn: false,
-      cartData: []
+      mobileBtn: false
     };
   },
   created() {
-    this.$bus.$on("cartUpdate", this.getCartData);
     this.getCartData();
   },
   mounted() {
     $(window).scroll(() => {
       const scrollTop = $(".header").offset().top;
-      if (scrollTop > 150) {
+      if (scrollTop > 100) {
         $(".header-navbar-list").addClass("scroll");
         $(".header-main").addClass("scroll");
       } else {
@@ -155,12 +154,11 @@ export default {
   },
   methods: {
     getCartData() {
-      let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
-
-      this.axios.get(api).then(res => {
-        this.cartData = res.data.data;
-      });
+      this.$store.dispatch("getCartData");
     }
+  },
+  computed: {
+    ...mapGetters(["cartData"])
   }
 };
 </script>

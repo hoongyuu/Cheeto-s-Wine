@@ -27,12 +27,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: ["item", "isDel", "token", "isCoupon"],
   methods: {
     delCart() {
-      // vue loading-show
-      let loader = this.$loading.show();
+      this.$store.state.isLoading = true;
       let api;
       if (this.isDel === true) {
         // 刪除後臺產品資料
@@ -47,10 +47,11 @@ export default {
       this.axios.delete(api).then(() => {
         this.$emit("update");
         this.$bus.$emit("cartUpdate");
-        // vue loading-hide
-        loader.hide();
       });
     }
+  },
+  computed: {
+    ...mapGetters(["isLoading"])
   }
 };
 </script>

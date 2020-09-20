@@ -1,9 +1,8 @@
 export default {
   methods: {
     addCart(item, type) {
-      // vue loading-show
-      let loader = this.$loading.show();
-      const api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
+      this.$store.state.isLoading = true;
+      let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
       this.spannerStatus = item.id;
       const cartData = {
         product: item.id,
@@ -24,13 +23,20 @@ export default {
             });
           }
           this.spannerStatus = "";
-          this.$bus.$emit("cartUpdate");
-          // vue loading-hide
-          loader.hide();
+          this.$store.dispatch("getCartData");
+          this.$store.state.isLoading = false;
         })
         .catch(() => {
           if (type === "buy") {
-            this.$router.push("/cart");
+            api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
+            this.axios
+              .patch(api, cartData)
+              .then(() => {
+                this.$router.push("/cart");
+              })
+              .catch(() => {
+                this.$router.push("/cart");
+              });
           } else {
             this.$swal.fire({
               position: "top-end",
@@ -39,10 +45,9 @@ export default {
               showConfirmButton: false,
               timer: 1000
             });
+            this.$store.state.isLoading = false;
           }
           this.spannerStatus = "";
-          // vue loading-hide
-          loader.hide();
         });
     }
   }

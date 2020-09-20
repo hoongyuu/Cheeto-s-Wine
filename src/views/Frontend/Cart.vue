@@ -1,5 +1,10 @@
 <template>
   <section class="cart">
+    <loading
+      loader="dots"
+      :active.sync="isLoading"
+      background-color="rgb(173, 92, 0)"
+    ></loading>
     <div class="container">
       <div class="cart-header">
         <h2>購物車</h2>
@@ -8,7 +13,11 @@
           繼續選購
         </router-link>
       </div>
-      <div class="cart-main" v-if="readyLoad">
+
+      <div class="cart-main" v-if="cartData.length === 0">
+        <h3 class="cart-main-empty">您的購物車目前是空的</h3>
+      </div>
+      <div class="cart-main" v-else>
         <div
           class="cart-main-item"
           v-for="item in cartData"
@@ -17,7 +26,9 @@
           <div class="cart-main-info">
             <img :src="item.product.imageUrl" />
             <div class="cart-main-txt">
-              <h4 class="item-winery">{{ item.productData.options.winery }}</h4>
+              <h4 class="item-winery">
+                {{ item.productData.options.winery }}
+              </h4>
               <h3 class="item-title">{{ item.product.title }}</h3>
               <span class="item-info">
                 {{ item.productData.options.year }} |
@@ -61,11 +72,9 @@
           :class="{ active: showModal }"
           :item="delData"
           @close="showModal = false"
+          @loading="isLoading = !isLoading"
           @update="getCartData()"
         ></delModel>
-      </div>
-      <div class="cart-main" v-else>
-        <h3 class="cart-main-empty">您的購物車目前是空的</h3>
       </div>
     </div>
   </section>
@@ -74,16 +83,15 @@
 <script>
 import checkNum from "@/assets/JS/checkNum";
 import delModel from "@/components/DelModal.vue";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      cartData: [],
       delData: {
         product: {
           title: ""
         }
       },
-      readyLoad: false,
       showModal: false
     };
   },
@@ -95,42 +103,9 @@ export default {
   },
   mixins: [checkNum],
   methods: {
-    getCartData() {
-      // vue loading-show
-      let loader = this.$loading.show();
-      let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.readyLoad = false;
-      this.axios
-        .get(api)
-        .then(res => {
-          this.cartData = res.data.data;
-
-          api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/products?paged=100`;
-          return this.axios.get(api);
-        })
-        .then(res => {
-          const tempData = res.data.data;
-          // vue loading-hide
-          loader.hide();
-          tempData.forEach(item => {
-            this.cartData.forEach(cartItem => {
-              this.$set(cartItem, "showModal", false);
-              if (item.id === cartItem.product.id) {
-                this.$set(cartItem, "productData", item);
-                setTimeout(() => {
-                  this.readyLoad = true;
-                }, 0);
-              }
-            });
-          });
-        })
-        .catch(() => {
-          loader.hide();
-        });
-    },
+    ...mapActions(["getCartData"]),
     updateData(item, type) {
-      // vue loading-show
-      let loader = this.$loading.show();
+      this.$store.state.isLoading = true;
       let api = `${process.env.VUE_APP_APIPATH}${process.env.VUE_APP_UUID}/ec/shopping`;
       switch (type) {
         case "increment":
@@ -149,16 +124,19 @@ export default {
       this.axios
         .patch(api, cart)
         .then(() => {
-          loader.hide();
+          this.$store.state.isLoading = false;
         })
         .catch(() => {
-          loader.hide();
+          this.$store.state.isLoading = false;
         });
     },
     showDel(item) {
       this.delData = item;
       this.showModal = true;
     }
+  },
+  computed: {
+    ...mapGetters(["cartData", "isLoading"])
   }
 };
 </script>
